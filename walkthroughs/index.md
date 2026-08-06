@@ -28,7 +28,7 @@ Use one row per product area. Base the summary only on registered walkthrough me
 
 | Product group | Product | Product area | Coverage | Reviewed walkthroughs | Known gaps / next scope |
 | --- | --- | --- | --- | --- | --- |
-| — | — | — | `not-assessed` | — | Add the first bounded walkthrough. |
+| JobVision | Candidate | Job Search (candidate area) | `not-assessed` | — | Complete the first bounded production walkthrough for logged-in search and filters. |
 
 ## Walkthroughs
 
@@ -36,7 +36,7 @@ Use the next unused `WT-YYYY-NNN` value. Never renumber or reuse an ID.
 
 | ID | Product / area | Bounded scope and context | Status | Coverage | Package | Updated | Notes / next gap |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | — | — | — | Add a `planned` row before the first walkthrough. |
+| WT-2026-001 | JobVision Candidate / Job Search (candidate area) | Logged-in jobseeker in Production, starting at the home page; discover jobs and exercise visible search/filter controls. Excludes applying, profile/resume edits, purchases, and irreversible actions. | `planned` | `not-assessed` | — | 2026-08-06 | Browser access was blocked before the home page loaded; retry the bounded flow and capture entry, filter application/clearing, result changes, persistence, empty/error states, and responsive behavior if in scope. |
 
 ## Update rules
 
