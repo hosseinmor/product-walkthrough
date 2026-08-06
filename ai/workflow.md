@@ -2,6 +2,19 @@
 
 This workflow turns a guided product screen recording into a reviewed evidence package and then hands that package to a separate Product Knowledge reconciliation process.
 
+## Phase 0 — Check and register
+
+Before recording or extracting evidence, the AI must read `walkthroughs/index.md` from the current `main` branch.
+
+Use the registry to:
+
+1. Check related product-area coverage and known gaps.
+2. Confirm that the proposed scope is bounded and not an accidental duplicate.
+3. Allocate the next unused `WT-YYYY-NNN` ID.
+4. Add or update a `planned` row with `not-assessed` coverage.
+
+The registry is planning metadata only. Do not read linked prior packages or use registry wording as product evidence during extraction.
+
 ## Phase 1 — Record
 
 A product expert selects a bounded product area or flow and records the product while explaining context, behavior, rules, uncertainty, and omitted paths.
@@ -28,6 +41,7 @@ The extraction AI must:
 6. Add timestamps and contextual limits.
 7. Record coverage gaps, uncertainty, and suspected bugs.
 8. Leave all owner decisions as `pending`.
+9. Update the registry row to `draft`, set its coverage assessment, and record the most useful next gap.
 
 During this phase, do not read Product Knowledge, PRDs, prior walkthrough conclusions, or design documents unless the user explicitly requests comparison.
 
@@ -51,6 +65,8 @@ For edited evidence, the owner writes a complete final claim.
 
 The package becomes `reviewed` only when every item has a decision and all edited items have a final claim.
 
+After completion, update the registry row to `reviewed` and recalculate the related product-area coverage summary. Do not mark an entire product area complete from one bounded walkthrough.
+
 ## Phase 4 — Prepare handoff
 
 The reviewed package must clearly identify:
@@ -63,6 +79,8 @@ The reviewed package must clearly identify:
 - Reviewer and review date
 
 The reviewed package is the boundary between this repository and Product Knowledge.
+
+When reconciliation starts, update the registry row to `handed-off` and add the proposal or pull request link in notes.
 
 ## Phase 5 — Reconcile with Product Knowledge
 
@@ -92,3 +110,5 @@ Do not copy the evidence package into Product Knowledge as a new permanent artif
 When an AI agent explores the product directly, define scope, safety constraints, permitted actions, forbidden actions, account context, and stop conditions before execution.
 
 The output remains the same evidence package and follows the same owner review and handoff process.
+
+The browser-agent variant must also check and update `walkthroughs/index.md` before and after the walkthrough.

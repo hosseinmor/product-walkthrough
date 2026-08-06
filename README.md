@@ -43,17 +43,23 @@ ai/workflow.md
 ai/skills/walkthrough/SKILL.md
 → execution contract for AI tools
 
-walkthroughs/
-→ optional reviewed evidence packages; never store large video files here
+walkthroughs/index.md
+→ central walkthrough status and product-area coverage registry
+
+walkthroughs/WT-YYYY-NNN/evidence.md
+→ optional reviewed evidence package; never store large video files here
 ```
 
 ## Default operating model
 
-1. A product expert selects a bounded area and records the product while explaining context and behavior.
-2. AI extracts comprehensive evidence into one evidence package.
-3. The relevant owner accepts, edits, or rejects each evidence claim.
-4. Only accepted claims and owner-edited final claims become eligible for Product Knowledge reconciliation.
-5. A separate AI session reads `product-knowledge/main`, proposes focused document changes, and opens a normal branch and pull request.
+1. AI reads `walkthroughs/index.md`, selects a bounded gap, allocates the next walkthrough ID, and registers the scope as `planned`.
+2. A product expert records the product while explaining context and behavior.
+3. AI extracts comprehensive evidence into one evidence package, then updates registry status and coverage.
+4. The relevant owner accepts, edits, or rejects each evidence claim; AI updates the registry when review completes.
+5. Only accepted claims and owner-edited final claims become eligible for Product Knowledge reconciliation.
+6. A separate AI session reads `product-knowledge/main`, proposes focused document changes, and opens a normal branch and pull request.
+
+The registry contains planning and coverage metadata only. It must not be used as evidence or as a source for completing claims during extraction.
 
 ## Storage
 

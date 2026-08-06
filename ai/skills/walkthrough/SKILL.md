@@ -29,6 +29,9 @@ guides/recording.md
 
 guides/evidence-review.md
 → owner review guidance
+
+walkthroughs/index.md
+→ ID, lifecycle status, and coverage registry
 ```
 
 ## Mode A — Evidence extraction
@@ -41,15 +44,17 @@ Input:
 
 Process:
 
-1. Use only the supplied recording and recorder context.
-2. Do not read Product Knowledge or previous documentation.
-3. Determine the actual observed scope.
-4. Extract comprehensive, meaningful, timestamped claims.
-5. Classify each claim as observed, narrated, or inferred.
-6. Preserve conditions and uncertainty.
-7. Record coverage gaps and suspected bugs.
-8. Produce one evidence package using the template.
-9. Leave owner decisions pending.
+1. Read `walkthroughs/index.md` for planning metadata, allocate the next ID, and register the bounded scope as `planned`.
+2. Use only the supplied recording and recorder context as evidence.
+3. Do not read Product Knowledge, linked prior packages, or previous documentation.
+4. Determine the actual observed scope.
+5. Extract comprehensive, meaningful, timestamped claims.
+6. Classify each claim as observed, narrated, or inferred.
+7. Preserve conditions and uncertainty.
+8. Record coverage gaps and suspected bugs.
+9. Produce one evidence package using the template.
+10. Leave owner decisions pending.
+11. Update the registry row to `draft` with coverage and the most useful next gap.
 
 Output:
 
@@ -71,6 +76,7 @@ Process:
 3. Do not reinterpret a rejected item as approved.
 4. Keep rejected evidence and remaining gaps visible for audit.
 5. Mark the package reviewed only when completion criteria are met.
+6. Update the registry row and related product-area coverage summary.
 
 Output:
 
@@ -88,6 +94,7 @@ Process:
 2. Select only accepted claims and edited final claims as approved evidence.
 3. Summarize candidate product areas and unresolved questions.
 4. Prepare a clean handoff package.
+5. When reconciliation starts, set the registry status to `handed-off` and record the proposal or pull request link.
 
 Do not update Product Knowledge in this mode unless the user explicitly starts a separate reconciliation task and current access to `hosseinmor/product-knowledge/main` is available.
 
@@ -100,3 +107,4 @@ Do not update Product Knowledge in this mode unless the user explicitly starts a
 - AI does not approve evidence.
 - Reviewed evidence is a source, not canonical Product Knowledge.
 - Raw or unreviewed evidence must never trigger a direct Product Knowledge update.
+- Registry metadata may guide scope and coverage planning, but it is never evidence for a product claim.

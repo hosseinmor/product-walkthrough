@@ -8,8 +8,10 @@ When the user provides a screen recording or asks to extract product behavior fr
 
 1. Read `ai/skills/walkthrough/SKILL.md`.
 2. Follow `ai/workflow.md`.
-3. Apply `rules/evidence.md`.
-4. Produce output using `templates/evidence-package.md`.
+3. Check `walkthroughs/index.md` for ID allocation, related coverage, and known gaps.
+4. Apply `rules/evidence.md`.
+5. Produce output using `templates/evidence-package.md`.
+6. Update `walkthroughs/index.md` at the lifecycle points defined in the workflow.
 
 When the user asks how to record a walkthrough, use `guides/recording.md`.
 
@@ -18,6 +20,8 @@ When the user asks how to review extracted evidence, use `guides/evidence-review
 ## Isolation rule
 
 During evidence extraction, do not read Product Knowledge, previous walkthrough conclusions, PRDs, or design documents unless the user explicitly asks for comparison. Extract only what is observable, narrated, or cautiously inferred from the supplied recording and context.
+
+The Walkthrough Registry is the exception for planning metadata only. Use it to allocate IDs, bound scope, and identify gaps; never use it or linked prior packages as evidence for a new extraction.
 
 ## Handoff rule
 
