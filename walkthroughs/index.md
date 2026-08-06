@@ -36,7 +36,7 @@ Use the next unused `WT-YYYY-NNN` value. Never renumber or reuse an ID.
 
 | ID | Product / area | Bounded scope and context | Status | Coverage | Package | Updated | Notes / next gap |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| WT-2026-001 | JobVision Candidate / Job Search (candidate area) | Logged-in jobseeker in Production, starting at the home page; discover jobs and exercise visible search/filter controls. Excludes applying, profile/resume edits, purchases, and irreversible actions. | `planned` | `not-assessed` | — | 2026-08-06 | Browser access was blocked before the home page loaded; retry the bounded flow and capture entry, filter application/clearing, result changes, persistence, empty/error states, and responsive behavior if in scope. |
+| WT-2026-001 | JobVision Candidate / Job Search (candidate area) | Logged-in jobseeker in Production, starting at the home page; discover jobs and exercise visible search/filter controls. Excludes applying, profile/resume edits, purchases, and irreversible actions. | `draft` | `partial` | [evidence](WT-2026-001/evidence.md) | 2026-08-06 | Next gap: advanced filters and saved-search alerts in a disposable account, then mobile/keyboard coverage. Two suspected bugs require Owner review. |
 
 ## Update rules
 
