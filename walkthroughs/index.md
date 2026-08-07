@@ -29,6 +29,7 @@ Use one row per product area. Base the summary only on registered walkthrough me
 | Product group | Product | Product area | Coverage | Reviewed walkthroughs | Known gaps / next scope |
 | --- | --- | --- | --- | --- | --- |
 | JobVision | Candidate | Job Search (candidate area) | `not-assessed` | — | Complete the first bounded production walkthrough for logged-in search and filters. |
+| JobVision | Candidate | Resume Management (candidate area) | `not-assessed` | — | Complete the first bounded production walkthrough for logged-in resume entry points, visible states, preview, and safe validation boundaries. |
 
 ## Walkthroughs
 
@@ -38,6 +39,7 @@ Use the next unused `WT-YYYY-NNN` value. Never renumber or reuse an ID.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | WT-2026-001 | JobVision Candidate / Job Search (candidate area) | Logged-in jobseeker in Production, starting at the home page; discover jobs and exercise visible search/filter controls. Excludes applying, profile/resume edits, purchases, and irreversible actions. | `draft` | `partial` | [evidence](WT-2026-001/evidence.md) | 2026-08-06 | Next gap: advanced filters and saved-search alerts in a disposable account, then mobile/keyboard coverage. Two suspected bugs require Owner review. |
 | WT-2026-002 | JobVision Candidate / Application Submission flow (candidate area TBD) | Logged-in jobseeker in Production, starting at the home page; navigate to an eligible job and inspect the application entry point, pre-submit steps, visible validations, and the final submission boundary. Excludes final submission to a real employer unless a pre-approved test posting is identified, resume/profile edits, messages, purchases, and irreversible actions. | `planned` | `not-assessed` | — | 2026-08-06 | Browser-agent safety boundary: stop before any action that sends an application or otherwise affects a real employer; record that path as blocked unless a safe test posting is explicitly approved. |
+| WT-2026-003 | JobVision Candidate / Resume Management (candidate area) | Logged-in jobseeker in Production, starting at the home page; navigate to Resume Management and inspect entry points, visible resume states, preview, and validations that can be reached without saving changes. Excludes saving or deleting resume data, uploads, applications, purchases, privacy changes, and any action affecting real data or users. | `planned` | `not-assessed` | — | 2026-08-07 | Browser-agent safety boundary: read-only exploration; stop before save, delete, upload, submit, purchase, privacy changes, or any irreversible action. |
 
 ## Update rules
 
