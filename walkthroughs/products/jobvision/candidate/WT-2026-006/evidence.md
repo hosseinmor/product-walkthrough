@@ -6,359 +6,207 @@ product: Candidate
 candidate_areas:
   - Application Management (candidate area TBD)
 recorded_at: 2026-08-07
+updated_at: 2026-08-08T07:55:00Z
 source:
   type: browser-agent
-  reference: Direct read-only Production audit of https://jobvision.ir
+  reference: واکتروی مستقیم و read-only محیط Production در https://jobvision.ir
 reviewed_by: []
 reviewed_at:
 ---
 
-# Walkthrough Evidence Package
+# بسته شواهد واکترو
 
-## Context
+## زمینه
 
-- Goal: Inspect how a logged-in jobseeker finds, reviews, filters, and manages previously submitted applications.
-- Actor: Jobseeker.
-- Role: Logged-in candidate account; exact account entitlements are unknown.
-- Authentication state: Logged in.
-- Account, plan, or configuration: Existing Production account with historical applications; plan and special permissions were not verified.
-- Permissions: Normal visible candidate access was assumed only from the available UI; no permission-changing action was taken.
-- Environment: Production.
-- Starting point: JobVision home page.
-- Safety constraints: Read-only exploration. Do not withdraw an application, edit a sent resume, submit rejection feedback, change priority, send messages, edit profile/resume data, make purchases, or take any action that may affect an employer or another user.
+- Goal: بررسی یافتن، مرور، فیلتر و مدیریت درخواست‌های قبلاً ارسال‌شدهٔ کارجوی واردشده.
+- Actor: کارجو
+- Role: Candidate واردشده؛ entitlement دقیق حساب نامشخص است.
+- Authentication state: واردشده
+- Account, plan, or configuration: حساب Production با درخواست‌های تاریخی؛ plan و permission ویژه بررسی نشد.
+- Permissions: فقط دسترسی visible عادی Candidate مشاهده شد.
+- Environment: Production
+- Starting point: صفحه اصلی JobVision
+- Safety constraints: read-only؛ انصراف، ویرایش رزومه ارسالی، rejection feedback، تغییر My Priority، پیام، profile/resume edit، خرید و اقدام اثرگذار انجام نشد.
 
-## Coverage
+## پوشش
 
-### Covered
+### پوشش‌داده‌شده
 
-- Entry from the home-page account menu to submitted applications.
-- Active-application status filters and account-specific count badges.
-- Empty-state behavior for a status with no applications.
-- Sorting active applications by request date and status-decision date.
-- Application summary information and expandable details.
-- Read-only inspection of available edit and withdrawal controls.
-- Rejected-application feedback prompts without answering them.
-- Closed-application grouping and pagination.
-- On-page FAQ guidance for status meanings, withdrawal eligibility, review timestamps, closed postings, and rejection feedback.
-- Visible "My Priority" explanation and quota model without changing priority.
+- entry منوی حساب به درخواست‌های ارسال‌شده.
+- status filterهای درخواست فعال و badgeهای اختصاصی حساب.
+- empty state یک status بدون درخواست.
+- sort درخواست‌های فعال، جزئیات بازشونده، گروه closed و pagination.
+- مشاهدهٔ read-only controlهای edit و withdrawal.
+- promptهای feedback درخواست ردشده و FAQ وضعیت‌ها.
+- توضیح و quota قابل مشاهدهٔ My Priority بدون تغییر آن.
 
-### Narrated but not demonstrated
+### روایت‌شده ولی نمایش‌داده‌نشده
 
-- None. No recorder or domain-owner narration was supplied during this browser-agent walkthrough.
+- موردی وجود ندارد.
 
-### Not covered
+### پوشش‌داده‌نشده
 
-- Executing or confirming application withdrawal.
-- Editing the resume attached to a submitted application.
-- Selecting or removing "My Priority" or adding/editing its introduction letter.
-- Submitting rejection-stage or interview feedback.
-- Opening or applying to similar jobs from a rejected application.
-- Applications in initial evaluation, final evaluation, or withdrawn states because the audited account had no current examples.
-- Empty-account behavior, other candidate roles or plans, mobile/responsive behavior, keyboard navigation, and screen-reader behavior.
+- اجرای یا تأیید withdrawal.
+- ویرایش resume متصل به درخواست.
+- انتخاب/حذف My Priority یا تغییر introduction letter.
+- submit feedback رد یا مصاحبه.
+- بازکردن/Apply برای شغل مشابه.
+- نمونه‌های initial evaluation، final evaluation یا withdrawn.
+- empty-account، role/plan دیگر، mobile، keyboard و screen reader.
 
-### Unclear or blocked
+### نامشخص یا مسدود
 
-- Whether withdrawal has a confirmation step, is reversible, and how quickly list counts and status update.
-- Whether editing a sent resume changes a snapshot or the current canonical candidate resume visible to the employer.
-- How rejection feedback is persisted and whether it is optional or required.
-- How "My Priority" is presented in the employer experience and whether quota rules vary by plan.
-- Whether the "All" filter intentionally excludes closed applications in every account/context.
+- confirmation، برگشت‌پذیری و سرعت update withdrawal.
+- snapshot یا live بودن resume ارسالی برای Employer.
+- persistence و optional/required بودن rejection feedback.
+- نمایش My Priority سمت Employer و variation quota بر حسب plan.
+- اینکه All filter در همه contextها closedها را حذف می‌کند یا نه.
 
-## Evidence
+## شواهد
 
-### E-001 — Submitted applications are reachable from the candidate account menu
-
+### E-001 — درخواست‌های ارسال‌شده از account menu قابل دسترسی‌اند
 - Type: observed
 - Timestamp: 2026-08-07 19:37:51–19:38:01 +03:30
-- Scope: Logged-in candidate on the Production home page.
-- Conditions: Desktop web experience; account menu opened from the header.
 - Confidence: high
-- Claim: The candidate account menu includes a "Submitted resumes" entry that navigates to `/my-applications`, where the page heading identifies the submitted-applications workspace.
-- Remaining uncertainty: Other responsive layouts and unauthenticated behavior were not tested.
+- Claim: account menu Candidate entry «رزومه های ارسال شده» دارد که به `/my-applications` می‌رود و heading صفحه workspace درخواست‌های ارسال‌شده را مشخص می‌کند.
+- Remaining uncertainty: layoutهای دیگر و unauthenticated آزموده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-002 — The page separates applications by lifecycle-oriented status filters
-
+### E-002 — صفحه درخواست‌ها را با filterهای lifecycle تفکیک می‌کند
 - Type: observed
 - Timestamp: 2026-08-07 19:38:01–19:38:44 +03:30
-- Scope: Logged-in candidate with existing active and historical applications.
-- Conditions: Counts are specific to the audited account and are intentionally omitted from this claim.
 - Confidence: high
-- Claim: The page provides filters for All, Received by employer, Initial evaluation, Final evaluation, Rejected, Withdrawn, and Closed postings. Selecting a filter narrows the visible list and encodes the selected status in the page URL.
-- Remaining uncertainty: The complete server-side status model and permission-dependent states were not verified.
+- Claim: filterهای همه، دریافت‌شده توسط کارفرما، ارزیابی اولیه، ارزیابی نهایی، ردشده، انصراف‌داده‌شده و آگهی‌های بسته وجود دارد؛ انتخاب filter فهرست را محدود و status را در URL ثبت می‌کند.
+- Remaining uncertainty: status model server-side و stateهای وابسته به permission تأیید نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-003 — Application summaries expose status and timing signals
-
+### E-003 — summary درخواست، status و signal زمانی را نشان می‌دهد
 - Type: observed
 - Timestamp: 2026-08-07 19:38:01–19:39:57 +03:30
-- Scope: Active, rejected, and closed application cards in the audited account.
-- Conditions: Some timing fields were absent on individual cards.
 - Confidence: high
-- Claim: Each visible application summary identifies the job, employer, current visible status, and relative submission time; when available, it also shows when the employer viewed the application.
-- Remaining uncertainty: The exact conditions that suppress the viewed timestamp were not tested.
+- Claim: هر summary visible شغل، کارفرما، status فعلی و زمان نسبی ارسال را نشان می‌دهد و در صورت وجود، زمان مشاهدهٔ درخواست توسط کارفرما را نیز نشان می‌دهد.
+- Remaining uncertainty: شرط حذف viewed timestamp مشخص نیست.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-004 — Empty status filters explain what would appear there
-
+### E-004 — filter خالی توضیح state مورد انتظار را می‌دهد
 - Type: observed
 - Timestamp: 2026-08-07 19:38:34 +03:30
-- Scope: Initial-evaluation filter with no matching applications in the audited account.
-- Conditions: Desktop Production page.
 - Confidence: high
-- Claim: When a status filter has no matching applications, the list is replaced by explanatory copy describing which employer-driven transition would place an application in that section.
-- Remaining uncertainty: Empty-state copy for every other status was not inspected.
+- Claim: وقتی status filter نتیجه ندارد، متن توضیحی می‌گوید کدام transition کارفرما درخواست را به این بخش می‌آورد.
+- Remaining uncertainty: متن empty state همه statusها دیده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-005 — Closed applications are separated and paginated
-
+### E-005 — درخواست‌های آگهی بسته جدا و صفحه‌بندی‌شده‌اند
 - Type: observed
 - Timestamp: 2026-08-07 19:38:44–19:38:54 +03:30
-- Scope: Closed-postings filter in an account with multiple pages of historical applications.
-- Conditions: Read-only navigation between the first two pages.
 - Confidence: high
-- Claim: Applications associated with closed job postings appear in a dedicated filter and are paginated; moving to another page updates the page parameter in the URL and loads a different set of historical applications.
-- Remaining uncertainty: Page size, final-page behavior, and very large histories were not fully assessed.
+- Claim: درخواست‌های آگهی بسته filter اختصاصی و pagination دارند؛ رفتن به page دیگر parameter صفحه را در URL تغییر و cardهای تاریخی متفاوتی را load می‌کند.
+- Remaining uncertainty: page size و page آخر کامل بررسی نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-006 — Active applications can be sorted by request date or status-decision date
-
+### E-006 — درخواست‌های فعال بر مبنای تاریخ درخواست یا تصمیم status sort می‌شوند
 - Type: observed
 - Timestamp: 2026-08-07 19:40:08 +03:30
-- Scope: All active applications in the audited account.
-- Conditions: Both sort options were available because multiple active applications were present.
 - Confidence: high
-- Claim: The active-applications list offers sorting by request date and by status-decision date. Changing the selection updates both the result order and the `sortType` URL parameter.
-- Remaining uncertainty: Sort direction, tie-breaking, and sort availability in other filters were not verified.
+- Claim: فهرست فعال sort بر اساس تاریخ درخواست و تاریخ تصمیم status دارد؛ تغییر انتخاب order و `sortType` URL را تغییر می‌دهد.
+- Remaining uncertainty: direction و tie-breaker نامشخص است.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-007 — Expanding an active application reveals management details and actions
-
+### E-007 — جزئیات درخواست فعال اطلاعات مدیریت را نشان می‌دهد
 - Type: observed
 - Timestamp: 2026-08-07 19:39:30–19:39:49 +03:30
-- Scope: One active application in the Received-by-employer filter.
-- Conditions: The application already contained an introduction letter and had not been withdrawn.
 - Confidence: high
-- Claim: Expanding an active application can reveal the employer's latest visit to applications for that job, an attached introduction letter when present, and visible controls for editing the sent resume and withdrawing the application.
-- Remaining uncertainty: Neither management action was opened or executed; their validations, confirmations, persistence, and downstream effects remain unknown.
+- Claim: expand یک درخواست فعال می‌تواند آخرین بازدید کارفرما از درخواست‌های آن شغل، introduction letter موجود و controlهای ویرایش resume ارسالی و withdrawal را نشان دهد.
+- Remaining uncertainty: validation، confirmation، persistence و اثر downstream هیچ actionی آزموده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-008 — The UI states that withdrawal is limited to unseen applications
-
+### E-008 — UI می‌گوید withdrawal فقط پیش از مشاهده رزومه مجاز است
 - Type: observed
 - Timestamp: 2026-08-07 19:40:31 +03:30
-- Scope: On-page FAQ guidance in the submitted-applications workspace.
-- Conditions: Guidance was read but the rule was not demonstrated through a withdrawal attempt.
 - Confidence: medium
-- Claim: The FAQ states that a candidate can withdraw a previously submitted application only while the organization has not yet viewed the resume.
-- Remaining uncertainty: Enforcement behavior, race conditions, confirmation, and exceptions were not tested.
+- Claim: FAQ می‌گوید Candidate فقط تا زمانی که سازمان resume را ندیده باشد می‌تواند درخواست قبلی را withdraw کند.
+- Remaining uncertainty: enforcement، race condition و exceptionها آزموده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-009 — Rejected applications ask the candidate for process feedback
-
+### E-009 — درخواست ردشده feedback فرایند را می‌پرسد
 - Type: observed
 - Timestamp: 2026-08-07 19:39:57 +03:30
-- Scope: One rejected application that had been viewed by the employer.
-- Conditions: No feedback option was selected or submitted.
 - Confidence: high
-- Claim: Expanding a rejected application shows when the employer viewed it and asks the candidate to identify the rejection stage (after submission, after a phone interview, or after an in-person interview) and whether an interview occurred.
-- Remaining uncertainty: Submission trigger, optionality, persistence, and how this feedback is used were not assessed.
+- Claim: expand درخواست ردشده، زمان مشاهده توسط کارفرما را نشان می‌دهد و از Candidate stage ردشدن و وقوع مصاحبه را می‌پرسد.
+- Remaining uncertainty: trigger، optionality، persistence و کاربرد feedback مشخص نیست.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-010 — The page explains core employer-driven status meanings
-
+### E-010 — FAQ معنای statusهای اصلی را توضیح می‌دهد
 - Type: observed
 - Timestamp: 2026-08-07 19:40:17 +03:30
-- Scope: On-page FAQ guidance.
-- Conditions: Help content was observed; the transitions were not independently triggered.
 - Confidence: medium
-- Claim: The FAQ describes Received by employer as the organization having received the resume for initial review, Initial evaluation as further review, Final evaluation as passing the review stage without guaranteeing an interview, Rejected as the employer continuing with another candidate, and Closed as the employer having filled the position and closed the posting.
-- Remaining uncertainty: The FAQ does not define the Withdrawn state even though it exists as a page filter.
+- Claim: FAQ Received by employer، Initial evaluation، Final evaluation، Rejected و Closed را به‌عنوان stateهای employer-driven توضیح می‌دهد.
+- Remaining uncertainty: FAQ Withdrawn را تعریف نمی‌کند.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-011 — Application details distinguish application-view time from employer activity time
-
+### E-011 — جزئیات میان زمان مشاهده درخواست و activity کارفرما تمایز می‌گذارد
 - Type: observed
 - Timestamp: 2026-08-07 19:40:42 +03:30
-- Scope: On-page FAQ guidance and one expanded active application.
-- Conditions: Relative times were shown for the audited account.
 - Confidence: medium
-- Claim: The page distinguishes when the employer viewed a specific candidate application from the employer's latest visit to the job's received-applications panel; both signals are discoverable through expanded application details when available.
-- Remaining uncertainty: Refresh cadence and data-source accuracy were not tested.
+- Claim: صفحه میان زمان مشاهدهٔ درخواست Candidate توسط کارفرما و آخرین بازدید کارفرما از پنل درخواست‌های دریافتی همان شغل تمایز می‌گذارد.
+- Remaining uncertainty: cadence refresh و دقت data source آزموده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-012 — Employer rejection feedback is optional and may be absent
-
+### E-012 — feedback رد کارفرما optional و ممکن است غایب باشد
 - Type: observed
 - Timestamp: 2026-08-07 19:41:09 +03:30
-- Scope: On-page FAQ guidance.
-- Conditions: No employer-provided rejection explanation was visible in the inspected rejected application.
 - Confidence: medium
-- Claim: The FAQ states that employers can provide a rejection reason or feedback that appears in application details, but an employer may reject an application without providing a reason, leaving that section empty.
-- Remaining uncertainty: Feedback formats, moderation, editability, and notification behavior were not assessed.
+- Claim: FAQ می‌گوید کارفرما می‌تواند reason یا feedback رد را ثبت کند، اما در نبود آن بخش جزئیات خالی می‌ماند.
+- Remaining uncertainty: format، moderation، editability و notification آزموده نشد.
 
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-013 — "My Priority" is presented as a limited recurring application-enhancement allowance
-
+### E-013 — My Priority سهمیهٔ دوره‌ای محدود برای متمایزکردن درخواست است
 - Type: observed
 - Timestamp: 2026-08-07 19:38:01–19:40:08 +03:30
-- Scope: Audited candidate account and page explanation.
-- Conditions: At least one existing application was already marked as priority; no priority state was changed.
 - Confidence: medium
-- Claim: The page explains that candidates can mark selected submitted applications as "My Priority" so the resume is differentiated for the employer and can include an introduction letter. The UI describes a recurring allowance of five priority selections per 30 days and shows account-specific remaining allowance and renewal timing.
-- Remaining uncertainty: Plan eligibility, employer-side presentation, removal behavior, and quota enforcement were not tested.
+- Claim: UI می‌گوید Candidate می‌تواند برخی درخواست‌های ارسال‌شده را My Priority کند تا resume برای کارفرما متمایز شود و introduction letter داشته باشد؛ سهمیهٔ پنج انتخاب در هر ۳۰ روز و remaining allowance/renewal زمان‌دار نمایش داده می‌شود.
+- Remaining uncertainty: eligibility، presentation Employer، removal و quota enforcement آزموده نشد.
 
-#### Owner review
+## باگ‌های مشکوک
 
-- Decision: pending
-- Final claim:
+### B-001 — terminology filter و application card متفاوت است
+- Observation: filter «دریافت‌شده توسط کارفرما» بود اما card همان نتیجه status معادل «وضعیت تعیین نشده» نشان داد.
+- Why it may be a bug: دو label ظاهراً به یک state اشاره دارند اما معنای متفاوتی می‌رسانند.
 - Owner note:
 
-## Suspected bugs
-
-### B-001 — Status terminology differs between the filter and application card
-
-- Timestamp: 2026-08-07 19:38:01–19:38:26 +03:30
-- Scope: The only application returned by the Received-by-employer filter.
-- Observation: The filter is labeled "Received by employer," while the matching application card displays a status equivalent to "Status not set."
-- Why it may be a bug: The two labels appear to represent the same current application state but communicate different meanings to the candidate.
+### B-002 — FAQ status، Withdrawn را تعریف نمی‌کند
+- Observation: Withdrawn filter دارد اما FAQ سایر statusهای اصلی را توضیح می‌دهد و آن را جا می‌اندازد.
+- Why it may be a bug: help content نسبت به taxonomy visible ناقص است.
 - Owner note:
 
-### B-002 — The status FAQ omits the Withdrawn status
-
-- Timestamp: 2026-08-07 19:40:17 +03:30
-- Scope: Status filters and the first FAQ answer on the same page.
-- Observation: Withdrawn is available as a filter, but the FAQ titled "What do the different resume statuses mean?" defines the other principal states and does not define Withdrawn.
-- Why it may be a bug: The help content appears incomplete relative to the status taxonomy presented immediately above it.
+### B-003 — چند control interactive role semantic استاندارد ندارند
+- Observation: status filterها link بدون مقصد، expand card icon خام و edit/withdraw container clickable بودند.
+- Why it may be a bug: keyboard operability و screen-reader clarity کاهش می‌یابد؛ آزمون accessibility مستقل لازم است.
 - Owner note:
 
-### B-003 — Several interactive controls lack standard semantic roles
+## شکاف‌های پوشش
 
-- Timestamp: 2026-08-07 19:38:01–19:39:49 +03:30
-- Scope: Desktop accessibility tree and visible DOM for status filters, card expansion, edit, and withdrawal controls.
-- Observation: Status filters were exposed as links without destinations, card expansion as a raw icon, and edit/withdraw actions as clickable containers rather than buttons.
-- Why it may be a bug: These implementations may reduce keyboard operability and screen-reader clarity; a dedicated accessibility test is required before confirmation.
-- Owner note:
+- withdrawal امن با confirmation، cancel، update و reversibility.
+- edit resume ارسالی و تشخیص snapshot در برابر live resume.
+- نمونه cardهای initial/final/withdrawn.
+- My Priority، validation نامه، removal، quota و visibility Employer.
+- rejection feedback و persistence آن.
+- empty account، mobile، keyboard و screen reader.
+- تأیید terminology و FAQ با Product Owner.
 
-## Coverage gaps
+## پیشنهاد واکتروی بعدی
 
-- Safely test withdrawal on a disposable application and pre-approved test posting, including confirmation, cancellation, state update, and reversibility.
-- Safely test editing the resume associated with a submitted application and determine snapshot versus live-resume behavior.
-- Demonstrate initial-evaluation, final-evaluation, and withdrawn application cards.
-- Test "My Priority" selection, introduction-letter validation, removal, quota enforcement, and employer-side visibility with approved test accounts.
-- Test rejection-feedback submission and persistence with a disposable application.
-- Test empty-account, mobile, keyboard-only, and screen-reader experiences.
-- Verify status terminology and FAQ completeness with the Product Owner.
+- با Candidate disposable و posting تأییدشدهٔ Employer، withdrawal و edit resume بدون اثر بر کارفرمای واقعی آزموده شود.
+- با accountهای زوج Candidate/Employer همهٔ transitionها، feedback، viewed timestamp و My Priority end-to-end ثبت شود.
+- keyboard و screen-reader برای filterها، expand card و actionهای مدیریت جداگانه آزموده شود.
 
-## Recommended follow-up recording
+## Product Areaهای مرتبط
 
-- Use a disposable candidate account and a pre-approved employer test posting to cover withdrawal and resume-edit flows without affecting a real employer.
-- Use paired candidate and employer test accounts to demonstrate every status transition, rejection feedback, viewed timestamps, and "My Priority" presentation end to end.
-- Run a focused keyboard and screen-reader walkthrough of status filters, card expansion, and management actions.
+- Primary: JobVision Candidate / Application Management
+- Secondary: Job Details & Evaluation، Resume Management و Premium Insights
+- Shared concept: `shared.application`
 
-## Related Product Areas
+## پیشنهادهای Product Knowledge
 
-- Primary: JobVision Candidate / Application Management. This area already exists as an owner-review candidate in `products/jobvision/candidate/overview.md`, although no dedicated Product Area document exists yet.
-- Secondary: Job Details & Evaluation, because application history is an entry point back toward Job Post context and that area explicitly delegates detailed post-submission journeys to Application Management.
-- Secondary candidate: Resume Management, because the expanded application exposes an action to edit the sent resume; ownership and snapshot-versus-live-resume behavior remain unknown.
-- Secondary candidate: Premium Insights, because "My Priority" is presented beside an upgrade path and quota; exact ownership and plan rules remain unknown.
-- Shared concept: `shared.application`, which owns cross-product Application meaning and relationships while Candidate-visible tracking and management belong in a Candidate Product Area.
+- این package draft برای تغییر canonical Product Knowledge مجاز نیست.
+- پس از review Owner، ایجاد Product Area مستقل Application Management با outcome درک state و مدیریت امن درخواست‌های ارسال‌شده بررسی شود.
+- تمایز current resume و Application-associated resume، transitionها، visibility Employer و ruleهای quota تا evidence زوج Candidate/Employer یا تصمیم Owner نامشخص بماند.
 
-## Suggested Product Knowledge updates
-
-This comparison was performed only after evidence extraction. It is preliminary, based on a draft package, and is not eligible for canonical Product Knowledge changes until Owner review.
-
-### Candidate Application Management Product Area
-
-- Recommendation: After Owner approval, create the dedicated Application Management Product Area already anticipated by the Candidate overview and Job Details & Evaluation document.
-- Suggested outcome: Help a Candidate understand the current state and employer activity for each submitted application and safely manage eligible post-submission actions.
-- Candidate flows supported by this walkthrough: enter from the account menu, filter by Candidate-visible status, sort, paginate closed history, expand application details, inspect employer-view signals, edit the sent resume, withdraw when eligible, manage "My Priority," and provide post-rejection process feedback.
-- Why existing areas are insufficient: Job Details & Evaluation explicitly delegates detailed submission and post-submission journeys; Resume Management would not logically own application lifecycle, employer activity, rejection, or withdrawal; Premium Insights would not own the base tracking experience.
-- Supporting evidence: E-001 through E-013.
-- Missing information: Owner-approved state model, withdrawal enforcement, resume snapshot behavior, employer synchronization, status-transition triggers, notifications, retention, empty-account behavior, plan variations, and end-to-end test evidence.
-- Confidence: high that Application Management is the logical Primary Product Area; medium on the exact boundaries with Resume Management and Premium Insights.
-- Team recommendation: Confirm the existing candidate area name and boundary before creating the document; do not create a new UI-page-based Product Area.
-
-### Candidate overview and Job Details & Evaluation
-
-- After the Product Area is approved and created, add its document ID to the Candidate overview relationships and replace the "future Application Management Product Area" wording in Job Details & Evaluation with a direct related-area reference.
-- Keep application submission and post-submission management boundaries explicit so the Job Post page does not become the owner of tracking, status, withdrawal, or rejection-feedback behavior.
-
-### Shared Application concept
-
-- After Owner review, use accepted evidence to refine Candidate-visible lifecycle terminology and the relationships between submitted, viewed, evaluated, rejected, withdrawn, and closed-posting representations.
-- Preserve the existing unknowns for withdrawal, resume snapshot versus live resume, cross-product status synchronization, retention, and related-Job-Post closure until paired Candidate/Employer evidence or an Owner decision resolves them.
-- Treat "Received by employer" versus "Status not set" as a possible terminology mismatch rather than a confirmed shared lifecycle rule.
-
-## Handoff summary
-
-Complete this section only after owner review.
+## خلاصه handoff
 
 - Package status: draft
 - Accepted evidence IDs:
 - Edited evidence IDs:
 - Rejected evidence IDs:
-- Remaining unknowns: See Coverage gaps and the remaining uncertainty on each evidence item.
-- Suggested Product Knowledge scope: Pending owner review and post-extraction comparison with current Product Knowledge.
+- Remaining unknowns: شکاف‌های پوشش و uncertainty هر شاهد.
+- Suggested Product Knowledge scope: پس از review Owner و مقایسه با Product Knowledge جاری.
 
-A reviewed package is an approved source for reconciliation. It is not canonical Product Knowledge and must not be copied directly into product documentation without comparison against the current `product-knowledge/main` branch.
+یک package reviewed منبع تأییدشده برای reconciliation است، اما canonical Product Knowledge نیست و نباید بدون مقایسه با `product-knowledge/main` مستقیماً در مستندات محصول کپی شود.
