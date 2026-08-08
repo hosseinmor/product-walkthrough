@@ -6,236 +6,255 @@ product: Candidate
 candidate_areas:
   - Job Details & Evaluation
 recorded_at: 2026-08-08T05:26:45Z
+updated_at: 2026-08-08T07:45:00Z
 source:
   type: browser-audit
-  reference: "Read-only Production audit on jobvision.ir; no screenshots retained"
+  reference: واکتروی Production روی jobvision.ir؛ بازبینی مستقیم در مرورگر داخلی و بدون نگه‌داری screenshot
 reviewed_by: []
 reviewed_at:
 ---
 
-# Walkthrough Evidence Package
+# بسته شواهد واکترو
 
-## Context
+## زمینه
 
-- Goal: Inspect the logged-in Saved Jobs flow from the home page, including entry points, visible states, navigation outcomes, and safe save/remove boundaries.
-- Actor: Jobseeker
-- Role: Authenticated Candidate
-- Authentication state: Logged in
-- Account, plan, or configuration: Existing Production account; the Saved Jobs collection was initially empty. One current Job Post was then saved after explicit user authorization. Plan was not verified.
-- Permissions: Normal visible Candidate access; no elevated permissions were tested.
-- Environment: Production, desktop in-app browser
-- Starting point: JobVision home page
+- Goal: بررسی جریان Saved Jobs کارجوی واردشده از صفحه اصلی، شامل نقطه‌های ورود، stateهای قابل مشاهده، نتیجه navigation و مرزهای امن save/remove.
+- Actor: کارجو
+- Role: Candidate واردشده
+- Authentication state: واردشده
+- Account, plan, or configuration: حساب Production؛ Saved Jobs ابتدا خالی بود و سپس با اجازه صریح کاربر یک Job Post جاری ذخیره شد. پلن بررسی نشد.
+- Permissions: دسترسی عادی Candidate؛ سطح دسترسی elevated آزموده نشد.
+- Environment: Production، نمای دسکتاپ مرورگر داخلی
+- Starting point: صفحه اصلی JobVision
+- Permitted actions: مشاهده و با اجازهٔ صریح قبلی، ذخیرهٔ یک Job Post جاری. بازبینی این نوبت read-only بود.
+- Forbidden actions: حذف saved job، Apply، تغییر profile/resume، upload/download، خرید، پیام و تغییر notification.
 
-## Coverage
+## پوشش
 
-### Covered
+### پوشش‌داده‌شده
 
-- The home-page account menu entry for Saved Jobs and its distinction from Saved Searches
-- Navigation from the home page to the authenticated Saved Jobs route
-- The Saved Jobs placement within the Candidate activity navigation
-- The current account's empty state and its visible guidance
-- Read-only inspection of bookmark-style save entry points on a job card and a current job detail
-- An explicitly authorized save action on one current Job Post, including the control-state transition
-- The resulting transition from the empty Saved Jobs state to a one-item list containing the saved Job Post
-- Accessibility signals exposed by the save controls
+- entry Saved Jobs در account menu و جدایی آن از Saved Searches.
+- navigation صفحه Saved Jobs و جایگاه آن در activity navigation Candidate.
+- empty state و guidance آن.
+- بررسی entryهای save با icon bookmark در card و detail.
+- یک save action مجاز و transition کنترل.
+- transition empty state به فهرست تک‌موردی.
+- persistence همان مورد پس از refresh.
+- accessibility signalهای visible کنترل save.
 
-### Narrated but not demonstrated
+### روایت‌شده ولی نمایش‌داده‌نشده
 
-- None.
+- موردی وجود ندارد.
 
-### Not covered
+### پوشش‌داده‌نشده
 
-- Saved Jobs ordering, pagination, filtering, or sorting beyond the observed one-item list
-- Opening a Job Post by activating its link from the Saved Jobs list
-- Removing a saved Job Post
-- Persistence across reload, sign-out/sign-in, browser sessions, or devices
-- Repeated save/remove behavior
-- Closed, expired, deleted, or otherwise unavailable saved Job Posts
-- Network failure, loading failure, retry, or recovery behavior
-- Unauthenticated access and return-after-login behavior
-- Mobile, responsive, keyboard-only, and assistive-technology execution
-- Account or plan variations
+- ordering، pagination، filter یا sort فراتر از فهرست تک‌موردی.
+- navigation با فعال‌کردن link Job Post از Saved Jobs.
+- remove saved Job Post.
+- persistence پس از sign-out/sign-in، browser session یا device دیگر.
+- save/remove تکراری.
+- Job Post بسته، منقضی، حذف‌شده یا unavailable.
+- خطای network/loading، retry یا recovery.
+- unauthenticated و بازگشت پس از login.
+- mobile، responsive، keyboard-only و assistive technology.
+- variationهای account یا plan.
 
-### Unclear or blocked
+### نامشخص یا مسدود
 
-- The account began with no saved Job Posts; only the resulting one-item state was observed after the user explicitly authorized one save action.
-- Removal remained prohibited because the user authorized saving one job, not removing it.
-- No visible toast or status message was detected after saving; whether feedback exists in other contexts remains unknown.
-- Exact removal confirmation, recovery, and longer-term persistence behavior remain unknown.
+- حساب در ابتدا هیچ Job Post ذخیره‌شده‌ای نداشت؛ فقط state تک‌موردی پس از save مجاز مشاهده شد.
+- remove در این بسته اجرا نشد؛ اگرچه کاربر اکنون اختیار گسترده‌تر داده است، برای جلوگیری از حذف دادهٔ موجود به آزمون جداگانه و هدفمند واگذار می‌شود.
+- پس از save toast یا status message قابل مشاهده‌ای دیده نشد.
+- confirmation حذف، recovery و persistence بلندمدت نامشخص‌اند.
+- فعال‌سازی link فهرست در browser automation این نوبت navigation ایجاد نکرد؛ به‌تنهایی برای ثبت defect کافی نیست.
 
-## Evidence
+## شواهد
 
-### E-001 — Saved Jobs has a dedicated account-menu entry
-
-- Type: observed
-- Timestamp: 2026-08-08T05:26:45Z
-- Scope: Logged-in Candidate on the Production home page
-- Conditions: Account menu opened; no account state changed
-- Confidence: high
-- Claim: The account menu exposes “مشاغل نشان‌ شده” as a dedicated link to `/saved-jobs`.
-- Remaining uncertainty: Other entry points and role/account variations were not tested.
-
-#### Owner review
-
-- Decision: pending
-- Final claim:
-- Owner note:
-
-### E-002 — Saved Jobs is separate from Saved Searches
+### E-001 — Saved Jobs entry مستقل در account menu دارد
 
 - Type: observed
 - Timestamp: 2026-08-08T05:26:45Z
-- Scope: Logged-in Candidate account menu in Production
-- Conditions: Account menu opened from the home page
+- Scope: Candidate واردشده در صفحه اصلی Production.
+- Conditions: account menu باز شد؛ state حساب تغییر نکرد.
 - Confidence: high
-- Claim: The account menu presents “مشاغل نشان‌ شده” (`/saved-jobs`) and “جستجوهای ذخیره شده” (`/saved-searches`) as separate destinations.
-- Remaining uncertainty: The relationship between these destinations beyond their separate links was not tested.
+- Claim: account menu لینک «مشاغل نشان‌شده» را به `/saved-jobs` نمایش می‌دهد.
+- Remaining uncertainty: entryهای دیگر و variation نقش/حساب آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-003 — Saved Jobs belongs to the Candidate activity navigation
+### E-002 — Saved Jobs از Saved Searches جداست
+
+- Type: observed
+- Timestamp: 2026-08-08T05:26:45Z
+- Scope: account menu Candidate واردشده.
+- Conditions: menu از صفحه اصلی باز شد.
+- Confidence: high
+- Claim: account menu «مشاغل نشان‌شده» (`/saved-jobs`) و «جستجوهای ذخیره شده» (`/saved-searches`) را مقصدهای جداگانه نمایش می‌دهد.
+- Remaining uncertainty: رابطه آن‌ها جز جدا بودن routeها آزموده نشد.
+
+#### بررسی Owner
+
+- Decision: pending
+- Final claim:
+- Owner note:
+
+### E-003 — Saved Jobs جزئی از activity navigation Candidate است
 
 - Type: observed
 - Timestamp: 2026-08-08T05:26:57Z–2026-08-08T05:27:16Z
-- Scope: Logged-in Candidate on `/saved-jobs` in Production
-- Conditions: Navigation started from the home-page account menu
+- Scope: Candidate واردشده در `/saved-jobs`.
+- Conditions: navigation از account menu صفحه اصلی آغاز شد.
 - Confidence: high
-- Claim: The Saved Jobs page appears in a Candidate activity navigation alongside submitted resumes, recommended jobs, and followed companies; “مشاغل نشان شده” is visually selected on the Saved Jobs route.
-- Remaining uncertainty: Navigation behavior from the other destinations was not exercised.
+- Claim: Saved Jobs کنار رزومه‌های ارسال‌شده، مشاغل پیشنهادی و شرکت‌های دنبال‌شده در navigation فعالیت Candidate قرار دارد و در route خودش visually selected است.
+- Remaining uncertainty: navigation از مقصدهای دیگر اجرا نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-004 — Empty Saved Jobs state explains the collection and save entry point
+### E-004 — empty state کاربرد مجموعه و نقطه save را توضیح می‌دهد
 
 - Type: observed
 - Timestamp: 2026-08-08T05:26:57Z–2026-08-08T05:27:16Z
-- Scope: Existing logged-in Candidate account with no saved Job Posts
-- Conditions: `/saved-jobs` finished loading in Production
+- Scope: حساب واردشده بدون Job Post ذخیره‌شده.
+- Conditions: `/saved-jobs` در Production کامل load شد.
 - Confidence: high
-- Claim: When the collection is empty, the page states that saved jobs will appear in this section and instructs the Candidate to use the icon at the top of a Job Post to save it.
-- Remaining uncertainty: Whether the empty state includes a separate call to action in other viewports or account configurations was not tested.
+- Claim: وقتی مجموعه خالی است، صفحه اعلام می‌کند مشاغل نشان‌شده در این بخش می‌آیند و Candidate را به استفاده از icon بالای Job Post برای ذخیره‌سازی راهنمایی می‌کند.
+- Remaining uncertainty: CTA جداگانه در viewport یا configuration دیگر آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-005 — Current job surfaces expose bookmark-style save entry points
+### E-005 — سطح‌های Job Post entry save مبتنی بر bookmark دارند
 
 - Type: observed
 - Timestamp: 2026-08-08T05:27:28Z–2026-08-08T05:29:02Z
-- Scope: Logged-in Candidate viewing current Job Post surfaces in Production
-- Conditions: A home-page job card and one current Job Post detail were inspected; no control was activated
+- Scope: card صفحه اصلی و یک Job Post جاری در detail.
+- Conditions: هیچ controlی در این بخش فعال نشد.
 - Confidence: high
-- Claim: Job cards expose an outline bookmark icon control, and the inspected current Job Post detail also exposes an outline bookmark-style control for the primary Job Post.
-- Remaining uncertainty: Removal behavior, duplicate action behavior, longer-term persistence, and feedback in other contexts remain untested.
+- Claim: cardها control bookmark با icon توخالی دارند و Job Post detail بررسی‌شده نیز control bookmark اصلی را نشان می‌دهد.
+- Remaining uncertainty: remove، action تکراری، persistence و feedback contextهای دیگر آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-006 — Global job-search controls remain available on Saved Jobs
+### E-006 — کنترل‌های سراسری Job Search در Saved Jobs باقی می‌مانند
 
 - Type: observed
 - Timestamp: 2026-08-08T05:26:57Z–2026-08-08T05:27:16Z
-- Scope: Logged-in Candidate on the Production Saved Jobs page
-- Conditions: Empty Saved Jobs collection
+- Scope: Candidate واردشده در Saved Jobs خالی.
+- Conditions: Production.
 - Confidence: high
-- Claim: The Saved Jobs page retains global job-search inputs for job title or company, job category, and city, plus a search action above the Candidate activity navigation.
-- Remaining uncertainty: Search submission and return behavior relative to Saved Jobs were not tested.
+- Claim: صفحه Saved Jobs inputهای سراسری عنوان شغل/شرکت، گروه شغلی و شهر و action جستجو را بالای activity navigation نگه می‌دارد.
+- Remaining uncertainty: submit جستجو و return behavior نسبت به Saved Jobs آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-007 — Saving a current Job Post changes the bookmark state
+### E-007 — ذخیره Job Post جاری state bookmark را تغییر می‌دهد
 
 - Type: observed
 - Timestamp: 2026-08-08T05:34:36Z
-- Scope: Logged-in Candidate on one current Job Post detail in Production
-- Conditions: The user explicitly authorized saving one job; no application or other account action was performed
+- Scope: یک Job Post جاری در detail، حساب Candidate واردشده.
+- Conditions: کاربر صریحاً ذخیره یک شغل را مجاز کرد؛ Apply یا اقدام دیگری انجام نشد.
 - Confidence: high
-- Claim: Activating the Job Post save control changed its icon from an outline secondary bookmark to a filled primary bookmark.
-- Remaining uncertainty: No visible toast or status message was detected; reload and cross-session persistence were not tested.
+- Claim: فعال‌سازی control ذخیره icon را از bookmark توخالی secondary به bookmark توپر primary تغییر داد.
+- Remaining uncertainty: toast قابل مشاهده نبود؛ reload و persistence بین sessionها آن زمان آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-008 — A newly saved Job Post appears in Saved Jobs
+### E-008 — Job Post تازه‌ذخیره‌شده در Saved Jobs ظاهر می‌شود
 
 - Type: observed
 - Timestamp: 2026-08-08T05:34:57Z
-- Scope: Same logged-in Candidate account on `/saved-jobs` in Production
-- Conditions: One current Job Post had just been saved with explicit user authorization
+- Scope: همان حساب در `/saved-jobs`.
+- Conditions: یک Job Post جاری همان لحظه ذخیره شده بود.
 - Confidence: high
-- Claim: After the save action, the empty-state message was no longer visible and the Saved Jobs page contained a single Job Post link matching the saved Job Post; its card showed a filled primary bookmark icon.
-- Remaining uncertainty: Ordering, pagination, filters, opening the item by click, removal, and longer-term persistence were not verified.
+- Claim: پس از save، empty-state ناپدید شد و Saved Jobs یک link Job Post مطابق مورد ذخیره‌شده داشت؛ card آن bookmark توپر primary نشان داد.
+- Remaining uncertainty: ordering، pagination، filter، بازکردن link، remove و persistence بلندمدت آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-## Suspected bugs
+### E-009 — Job Post ذخیره‌شده پس از refresh باقی می‌ماند
 
-### B-001 — Empty-state copy names a heart while visible save controls use a bookmark icon
+- Type: observed
+- Timestamp: 2026-08-08T07:42:00Z
+- Scope: همان Candidate واردشده در `/saved-jobs`.
+- Conditions: بازبینی read-only؛ صفحه پس از مشاهدهٔ فهرست تک‌موردی refresh شد.
+- Confidence: high
+- Claim: پس از refresh، همان card و link Job Post همچنان در Saved Jobs قابل مشاهده بود؛ بنابراین save دست‌کم در refresh همان session پایدار است.
+- Remaining uncertainty: persistence در session، device یا login دیگر آزموده نشده است.
+
+#### بررسی Owner
+
+- Decision: pending
+- Final claim:
+- Owner note:
+
+## باگ‌های مشکوک
+
+### B-001 — متن empty state از heart نام می‌برد اما کنترل‌های visible bookmark هستند
 
 - Timestamp: 2026-08-08T05:26:57Z–2026-08-08T05:29:02Z
-- Scope: Logged-in Candidate, empty Saved Jobs page plus inspected current Job Post surfaces in Production
-- Observation: The empty state instructs the user to click a heart icon, while inspected save controls use outline bookmark icons.
-- Why it may be a bug: The instruction and visible iconography do not match, which may make the save action harder to recognize.
-- Owner note: Intended terminology and icon choice require confirmation.
+- Scope: empty Saved Jobs و سطح‌های Job Post جاری.
+- Observation: empty state کاربر را به کلیک icon قلب راهنمایی می‌کند، اما controlهای بررسی‌شده icon bookmark توخالی دارند.
+- Why it may be a bug: متن راهنما و iconography قابل مشاهده هم‌خوان نیستند و تشخیص save action را سخت می‌کنند.
+- Owner note: اصطلاح و icon مورد انتظار نیازمند تأیید است.
 
-### B-002 — Save controls lack an accessible name
+### B-002 — controlهای save نام accessibility ندارند
 
 - Timestamp: 2026-08-08T05:27:28Z–2026-08-08T05:29:02Z
-- Scope: Logged-in Candidate, inspected home-page job card and current Job Post detail in Production
-- Observation: The job-card bookmark control is a button with no visible text, `aria-label`, or `title`. The primary Job Post bookmark control is an icon inside a clickable `div` without a semantic role, accessible name, or keyboard tabindex.
-- Why it may be a bug: Screen-reader and keyboard users may be unable to identify or operate the save action reliably.
-- Owner note: Confirm expected accessibility behavior and supported assistive-technology baseline.
+- Scope: card صفحه اصلی و Job Post detail بررسی‌شده.
+- Observation: bookmark card button متن visible، `aria-label` یا `title` نداشت. bookmark اصلی detail icon داخل `div` clickable بدون role semantic، accessible name یا keyboard tabindex بود.
+- Why it may be a bug: screen-reader و keyboard user ممکن است نتوانند action ذخیره را به‌طور قابل اتکا بشناسند یا اجرا کنند.
+- Owner note: baseline مورد انتظار accessibility باید تأیید شود.
 
-## Coverage gaps
+## شکاف‌های پوشش
 
-- Saved-list navigation by activating the item link
-- Remove state transition and longer-term persistence
-- Closed, expired, deleted, and unavailable saved Job Posts
-- Feedback and recovery on failed save/remove requests
-- Unauthenticated access and login return
-- Responsive, mobile, keyboard, and assistive-technology behavior
-- Account and plan variations
+- navigation فهرست با link Job Post
+- remove state transition و persistence بلندمدت
+- Job Post بسته، منقضی، حذف‌شده و unavailable
+- feedback و recovery خطای save/remove
+- unauthenticated و login return
+- responsive، mobile، keyboard و assistive technology
+- variationهای account و plan
 
-## Recommended follow-up recording
+## پیشنهاد واکتروی بعدی
 
-- Use a disposable Production-safe or staging account with an active saved Job Post and a closed or unavailable saved Job Post.
-- Explicitly authorize removal actions in that disposable account so removal feedback, recovery, and persistence can be verified.
-- Repeat the flow with keyboard-only navigation and a mobile viewport.
+- با حساب Production-safe یا staging و Job Post فعال/بسته، remove و recovery/persistence آزموده شود.
+- flow با keyboard-only و viewport موبایل تکرار شود.
 
-## Handoff summary
+## خلاصه handoff
 
-Complete this section only after owner review.
+این بخش فقط پس از review Owner تکمیل می‌شود.
 
 - Package status: draft
 - Accepted evidence IDs:
 - Edited evidence IDs:
 - Rejected evidence IDs:
-- Remaining unknowns:
-- Suggested Product Knowledge scope:
+- Remaining unknowns: شکاف‌های پوشش را ببینید.
+- Suggested Product Knowledge scope: JobVision Candidate / Job Details & Evaluation.
 
-A reviewed package is an approved source for reconciliation. It is not canonical Product Knowledge and must not be copied directly into product documentation without comparison against the current `product-knowledge/main` branch.
+یک package reviewed منبع تأییدشده برای reconciliation است، اما canonical Product Knowledge نیست و نباید بدون مقایسه با branch جاری `product-knowledge/main` مستقیماً در مستندات محصول کپی شود.
