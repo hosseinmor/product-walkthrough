@@ -6,226 +6,244 @@ product: Candidate
 candidate_areas:
   - Resume Management (candidate area)
 recorded_at: 2026-08-07
+updated_at: 2026-08-08T07:20:00Z
 source:
   type: browser-agent
-  reference: Direct read-only audit of Production in the Codex in-app browser
+  reference: واکتروی مستقیم محیط Production در مرورگر داخلی Codex؛ مشاهدهٔ اولیه read-only و بازبینی مجدد با مجوز کاربر برای اقدام‌های حساب
 reviewed_by: []
 reviewed_at:
 ---
 
-# Walkthrough Evidence Package
+# بسته شواهد واکترو
 
-## Context
+## زمینه
 
-- Goal: Inspect logged-in Resume Management entry points, visible resume states, employer preview, and validation boundaries without saving changes.
-- Actor: Jobseeker
+- Goal: بررسی نقطه‌های ورود مدیریت رزومه برای کارجوی واردشده، stateهای قابل مشاهده، پیش‌نمایش کارفرما، شاخص‌های تکمیل و مرز validation بدون ذخیره‌سازی یا تغییر داده.
+- Actor: کارجو
 - Role: Candidate
-- Authentication state: Logged in
-- Account, plan, or configuration: Existing Production account with a completed resume; subscription plan and feature entitlements were not verified.
-- Permissions: Candidate account permissions as observed; no cross-account or employer permission was tested.
+- Authentication state: واردشده
+- Account, plan, or configuration: حساب Production دارای رزومهٔ تکمیل‌شده؛ پلن اشتراک و entitlementها بررسی نشد.
+- Permissions: سطح دسترسی مشاهده‌شدهٔ Candidate؛ دسترسی متقاطع یا Employer آزموده نشد.
 - Environment: Production (`https://jobvision.ir`)
-- Starting point: Home page
-- Browser context: Codex in-app browser, approximately 1003 × 1023 CSS pixels.
-- Safety boundary: Read-only exploration. No save, delete, upload, application submission, purchase, privacy change, new AI evaluation, or download was completed.
-- Privacy: Personal resume values were visible during the audit but are intentionally omitted from this package.
+- Starting point: صفحه اصلی و سپس `/my-cv`
+- Browser context: مرورگر داخلی Codex؛ نمای دسکتاپ.
+- Permitted actions: مشاهده، ناوبری، بازکردن form بدون ذخیره، انتخاب preview و بازکردن نتیجهٔ موجود AI. در بازبینی دوم نیز فقط مشاهده انجام شد.
+- Forbidden actions: ذخیره یا حذف دادهٔ رزومه، upload/download، ارسال درخواست، خرید، تغییر privacy، شروع ارزیابی AI یا اقدام اثرگذار بر دادهٔ واقعی.
+- Privacy: مقادیر شخصی رزومه در رابط دیده شدند اما عمداً در این package ثبت نشده‌اند.
 
-## Coverage
+## پوشش
 
-### Covered
+### پوشش‌داده‌شده
 
-- Logged-in Home-page state and the Resume Management route exposed by the header (`/my-cv`).
-- Existing completed-resume state and its section navigation.
-- Overall and per-section completion indicators.
-- Candidate/self view versus employer preview.
-- Visibility of add, edit, and delete controls without invoking a mutation.
-- Opening the About Me form and inspecting visible fields and the pre-save boundary.
-- Opening an existing AI resume-evaluation result without starting a new evaluation.
-- Visibility of the resume-download control without initiating a download.
+- state ورود Candidate و route مدیریت رزومه از header (`/my-cv`).
+- state رزومهٔ موجود و navigation بخش‌ها.
+- نشانگر تکمیل کلی و per-section، از جمله بخش‌های اختیاری با درصد صفر.
+- نمای Candidate/self در برابر employer preview.
+- مشاهدهٔ کنترل‌های add، edit و delete بدون اجرای mutation.
+- بازکردن form «درباره من» و بررسی فیلدها تا مرز pre-save.
+- بازکردن نتیجهٔ موجود ارزیابی AI بدون شروع ارزیابی تازه.
+- مشاهدهٔ کنترل download رزومه بدون آغاز download.
 
-### Narrated but not demonstrated
+### روایت‌شده ولی نمایش‌داده‌نشده
 
-- None. No recorder narration was supplied during this browser-agent walkthrough.
+- موردی وجود ندارد.
 
-### Not covered
+### پوشش‌داده‌نشده
 
-- Saving, deleting, or changing resume data.
-- Uploading a personal resume, portfolio, audio introduction, or other file.
-- Downloading the generated resume or AI-evaluation report.
-- Starting a new AI resume evaluation.
-- Validation messages that require clearing or modifying existing data.
-- Empty, partially completed, or newly created resume states.
-- Persistence after a mutation or across another device/session.
-- Employer-side access from an actual employer account.
-- Application submission or the resume representation attached to an Application.
-- Purchases, plan upgrades, privacy changes, and visibility configuration.
+- ذخیره، حذف یا تغییر هر دادهٔ رزومه.
+- upload رزومه شخصی، portfolio، معرفی صوتی یا فایل دیگر.
+- download رزومهٔ تولیدشده یا گزارش AI.
+- شروع ارزیابی تازهٔ رزومه با AI.
+- پیام‌های validation که به پاک‌کردن یا تغییر مقدار موجود نیاز دارند.
+- state رزومهٔ خالی، ناقص یا تازه‌ساخته‌شده.
+- persistence پس از mutation یا در device/session دیگر.
+- دسترسی Employer از حساب واقعی Employer.
+- ارسال درخواست یا representation رزومهٔ متصل به Application.
+- خرید، ارتقای پلن، تغییر privacy و visibility configuration.
 
-### Unclear or blocked
+### نامشخص یا مسدود
 
-- The exact interactive path through the responsive profile menu was not reliably exposed to browser automation. The `/my-cv` destination was discovered from the Home-page header structure and opened directly.
-- Whether the employer preview exactly matches every employer-side surface is unknown; it was observed only as the Candidate-side preview.
-- Required-field validation could not be tested safely without modifying existing values or attempting a save.
-- Download formats, generated language variants, and download permissions were not tested.
+- مسیر تعاملی دقیق profile menu ریسپانسیو در automation اولیه قابل اتکا نبود؛ مقصد `/my-cv` از ساختار header صفحه اصلی شناخته و مستقیم باز شد.
+- اینکه employer preview دقیقاً با همهٔ سطوح Employer یکسان است نامشخص است؛ فقط preview سمت Candidate دیده شد.
+- required-field validation بدون تغییر امن مقادیر موجود یا تلاش برای save قابل آزمون نبود.
+- formatهای download، variantهای زبانی و permissionهای download آزموده نشد.
 
-## Evidence
+## شواهد
 
-### E-001 — Logged-in Candidate can reach Resume Management from the Home context
+### E-001 — Candidate واردشده از context صفحه اصلی به Resume Management می‌رسد
 
 - Type: observed
 - Timestamp: 2026-08-07T17:12:53Z–2026-08-07T17:15:00Z
-- Scope: JobVision Candidate, logged-in Production account, responsive Home header.
-- Conditions: Existing authenticated Candidate session.
+- Scope: JobVision Candidate، حساب واردشده در Production و header ریسپانسیو صفحه اصلی.
+- Conditions: session احراز هویت‌شدهٔ Candidate.
 - Confidence: high
-- Claim: The logged-in Home context exposes a Candidate resume destination labeled “رزومه من” with route `/my-cv`; opening that route displays the Candidate’s Resume Management page.
-- Remaining uncertainty: The exact click sequence through the responsive profile popover was not reliably exercised by automation.
+- Claim: context صفحه اصلی برای Candidate واردشده مقصد «رزومه من» با route `/my-cv` را نشان می‌دهد و بازکردن آن صفحهٔ Resume Management کارجو را نمایش می‌دهد.
+- Remaining uncertainty: sequence دقیق کلیک از profile popover ریسپانسیو در automation اولیه قابل اتکا نبود.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-002 — Resume Management organizes one resume into structured sections with completion state
+### E-002 — Resume Management یک رزومه را در بخش‌های ساختاریافته با state تکمیل سازمان می‌دهد
 
 - Type: observed
 - Timestamp: 2026-08-07T17:15:00Z
-- Scope: Existing completed resume in the Candidate self view.
-- Conditions: This account displayed an overall completed state; the result must not be generalized to incomplete resumes.
+- Scope: رزومهٔ موجود و تکمیل‌شده در نمای Candidate.
+- Conditions: این حساب state کلی تکمیل‌شده نشان داد؛ نباید به رزومه‌های ناقص تعمیم داده شود.
 - Confidence: high
-- Claim: Resume Management presents a single structured professional profile with an overall completion indicator, per-section completion indicators, and navigation across identity, experience, skills, references, achievements, contact, attachments, portfolio, and assessment-related sections.
-- Remaining uncertainty: Completion calculation rules and required sections were not tested.
+- Claim: Resume Management یک پروفایل حرفه‌ای ساختاریافته با نشانگر تکمیل کلی، نشانگرهای تکمیل per-section و navigation میان هویت، تجربه، مهارت، معرف‌ها، افتخارات، اطلاعات تماس، attachment، portfolio و بخش‌های مربوط به assessment ارائه می‌کند.
+- Remaining uncertainty: قواعد محاسبهٔ تکمیل و بخش‌های required آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-003 — Candidate self view exposes resume-management controls
+### E-003 — نمای self کنترل‌های مدیریت رزومه را نشان می‌دهد
 
 - Type: observed
 - Timestamp: 2026-08-07T17:15:00Z–2026-08-07T17:15:53Z
-- Scope: Candidate self view of an existing completed resume.
-- Conditions: Read-only observation; no control that mutates data was confirmed.
+- Scope: نمای self از یک رزومهٔ موجود و تکمیل‌شده.
+- Conditions: فقط مشاهده؛ هیچ control تغییر‌دهنده‌ای تأیید نشد.
 - Confidence: high
-- Claim: In the default “خودم” view, the page exposes section-level add, edit, and delete controls alongside the current resume content.
-- Remaining uncertainty: Permission, confirmation, validation, and persistence behavior behind those controls remains untested.
+- Claim: در نمای پیش‌فرض «خودم»، صفحه کنار محتوای رزومه controlهای add، edit و delete در سطح بخش را نشان می‌دهد.
+- Remaining uncertainty: permission، confirmation، validation و persistence پشت این controlها آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-004 — Employer preview removes management controls and limits displayed sections
+### E-004 — employer preview کنترل‌های مدیریت را حذف و برخی بخش‌ها را محدود می‌کند
 
 - Type: observed
-- Timestamp: 2026-08-07T17:15:27Z and subsequent controlled comparison
-- Scope: Candidate-side “کارفرما” preview on the same Production resume.
-- Conditions: Preview selected from the Resume Management page; no actual employer account was used.
+- Timestamp: 2026-08-07T17:15:27Z و مقایسهٔ کنترل‌شدهٔ بعدی
+- Scope: preview «کارفرما» در سمت Candidate روی همان رزومهٔ Production.
+- Conditions: preview از صفحه Resume Management انتخاب شد؛ حساب واقعی Employer استفاده نشد.
 - Confidence: high
-- Claim: Switching the viewer from “خودم” to “کارفرما” removes visible add, edit, and delete controls while keeping the professional resume sections readable. In this account, the employer preview omitted the Candidate-only sections for audio introduction, uploaded personal resume, and assessment results, while still showing the contact-information section.
-- Remaining uncertainty: Whether all real employer surfaces use this exact representation and whether plan, application, or privacy state changes visibility.
+- Claim: تغییر viewer از «خودم» به «کارفرما» controlهای add، edit و delete قابل مشاهده را حذف می‌کند و بخش‌های حرفه‌ای رزومه را قابل خواندن نگه می‌دارد. در این حساب preview کارفرما بخش‌های مخصوص Candidate شامل معرفی صوتی، رزومهٔ شخصی uploadشده و نتایج assessment را حذف کرد، اما بخش اطلاعات تماس را نشان داد.
+- Remaining uncertainty: معلوم نیست همهٔ سطح‌های واقعی Employer دقیقاً همین representation را دارند یا plan، Application یا privacy visibility را تغییر می‌دهد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-005 — About Me opens a bilingual edit form at a save boundary
+### E-005 — «درباره من» یک form دوزبانه تا مرز save باز می‌کند
 
 - Type: observed
 - Timestamp: 2026-08-07T17:15:53Z
-- Scope: About Me section in Candidate self view.
-- Conditions: Existing values were left unchanged; the form was closed without saving.
+- Scope: بخش «درباره من» در نمای self.
+- Conditions: مقادیر موجود بدون تغییر ماندند و form بدون save بسته شد.
 - Confidence: medium
-- Claim: The About Me section opens an edit dialog containing Persian and English job-title and self-description fields, a LinkedIn-profile field, and a “ذخیره تغییرات” action.
-- Remaining uncertainty: No native required marker was observed and the save action was enabled in the prefilled account state, but empty-field validation and server-side rules were not tested.
+- Claim: بخش «درباره من» dialog ویرایش با فیلدهای عنوان شغلی و شرح معرفی فارسی و انگلیسی، فیلد پروفایل LinkedIn و action «ذخیره تغییرات» باز می‌کند.
+- Remaining uncertainty: required marker بومی دیده نشد و action ذخیره در state ازپیش‌پرشده enabled بود، اما validation مقدار خالی و ruleهای server-side آزموده نشدند.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-006 — Existing AI resume-evaluation results are available separately from starting a new evaluation
+### E-006 — نتیجهٔ موجود ارزیابی AI از آغاز ارزیابی تازه جدا است
 
 - Type: observed
 - Timestamp: 2026-08-07T17:16:40Z
-- Scope: AI assistant banner on the Candidate Resume Management page.
-- Conditions: This account had a previous evaluation result; a new evaluation was not started.
+- Scope: banner دستیار AI در Resume Management Candidate.
+- Conditions: حساب نتیجهٔ ارزیابی قبلی داشت؛ ارزیابی تازه شروع نشد.
 - Confidence: high
-- Claim: Resume Management provides separate actions to open the latest existing AI resume-evaluation result and to start a new evaluation. Opening the existing result displays a dated evaluation summary and exposes a report-download action.
-- Remaining uncertainty: Evaluation criteria, entitlement rules, generation time, failure states, and report contents were not tested.
+- Claim: Resume Management actionهای جداگانه‌ای برای بازکردن آخرین نتیجهٔ موجود ارزیابی AI و آغاز ارزیابی تازه ارائه می‌کند. بازکردن نتیجهٔ موجود summary تاریخ‌دار ارزیابی را همراه action download گزارش نمایش می‌دهد.
+- Remaining uncertainty: معیارهای ارزیابی، ruleهای entitlement، زمان تولید، failure stateها و محتوای گزارش آزموده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-### E-007 — Resume download is exposed as a dedicated page-level control
+### E-007 — download رزومه یک control مستقل در سطح صفحه است
 
 - Type: observed
 - Timestamp: 2026-08-07T17:15:00Z
-- Scope: Candidate Resume Management top section.
-- Conditions: Download was intentionally not initiated.
+- Scope: بخش بالایی Resume Management Candidate.
+- Conditions: download عمداً آغاز نشد.
 - Confidence: high
-- Claim: The page exposes a dedicated “دانلود رزومه” control alongside viewer selection and resume-management features.
-- Remaining uncertainty: Available formats, language selection, generation behavior, permissions, and failure handling were not observed.
+- Claim: صفحه کنار انتخاب viewer و قابلیت‌های مدیریت رزومه یک control مستقل «دانلود رزومه» نشان می‌دهد.
+- Remaining uncertainty: formatهای در دسترس، language selection، generation behavior، permission و failure handling مشاهده نشد.
 
-#### Owner review
+#### بررسی Owner
 
 - Decision: pending
 - Final claim:
 - Owner note:
 
-## Suspected bugs
+### E-008 — تکمیل کلی ۱۰۰٪ می‌تواند همراه بخش‌های اختیاری ۰٪ باشد
 
-- None recorded. Automation difficulty with the responsive profile popover is insufficient evidence of a user-facing bug.
+- Type: observed
+- Timestamp: 2026-08-08T07:18:00Z
+- Scope: همان رزومهٔ موجود در نمای self؛ Production.
+- Conditions: بازبینی read-only، بدون تغییر داده.
+- Confidence: high
+- Claim: صفحه میزان تکمیل کلی ۱۰۰٪ را نمایش داد، در حالی که بخش‌های اختیاری «معرفی صوتی» و «بارگذاری رزومه شخصی» هرکدام ۰٪ بودند. بنابراین تکمیل کلیِ نمایش‌داده‌شده مستلزم تکمیل این دو بخش اختیاری نیست.
+- Remaining uncertainty: وزن‌دهی همهٔ بخش‌ها و اینکه کدام بخش‌ها required هستند هنوز معلوم نیست.
 
-## Coverage gaps
+#### بررسی Owner
 
-- Incomplete and empty resume states, including how overall completion is calculated.
-- Safe validation testing with disposable data for each editable section.
-- Save, cancel, delete-confirmation, error, and recovery behavior.
-- Resume visibility and privacy controls across Candidate, Employer, Application, and resume-bank contexts.
-- Real employer-account rendering and permissions.
-- Generated resume preview/download variants and their language behavior.
-- Upload constraints, file validation, replacement, deletion, and download behavior.
-- New AI evaluation flow, entitlement rules, progress states, failures, and report generation.
-- Multiple resumes or language variants, if supported.
-- Current resume versus the resume representation associated with an Application.
-- Mobile, keyboard, screen-reader, and accessibility coverage.
+- Decision: pending
+- Final claim:
+- Owner note:
 
-## Recommended follow-up recording
+## باگ‌های مشکوک
 
-- Use a disposable Candidate account with an incomplete resume to test required fields, completion calculation, save/cancel behavior, and safe deletion confirmations.
-- Run a separately approved download/upload walkthrough to cover generated formats, language variants, file limits, and error states.
-- Compare Candidate employer-preview output with the same resume opened from a real employer context using approved test data.
-- Record a separate Application walkthrough to determine whether employers see a live resume or an Application-specific snapshot.
+- موردی ثبت نشده است. دشواری automation در profile popover ریسپانسیو برای اثبات باگ کاربرمحور کافی نیست.
 
-## Related Product Areas
+## شکاف‌های پوشش
+
+- stateهای رزومهٔ ناقص و خالی و قواعد دقیق محاسبهٔ تکمیل.
+- validation امن هر بخش قابل ویرایش با دادهٔ disposable.
+- رفتار save، cancel، confirmation حذف، error و recovery.
+- visibility و privacy رزومه میان Candidate، Employer، Application و resume-bank.
+- rendering و permission در حساب واقعی Employer.
+- variantهای preview/download رزومهٔ تولیدشده و behavior زبان.
+- constraintهای upload، validation فایل، replacement، deletion و download.
+- جریان ارزیابی تازهٔ AI، entitlement، progress، failure و تولید گزارش.
+- چند رزومه یا language variant، اگر پشتیبانی شود.
+- تفاوت رزومهٔ جاری با representation پیوست‌شده به Application.
+- پوشش موبایل، keyboard، screen reader و accessibility.
+
+## پیشنهاد واکتروی بعدی
+
+- از یک Candidate disposable با رزومهٔ ناقص برای آزمون required fieldها، محاسبهٔ تکمیل، save/cancel و confirmation حذف استفاده شود.
+- یک واکتروی جداگانه و تأییدشده برای download/upload انجام شود تا formatهای تولیدشده، variantهای زبان، سقف فایل و error stateها پوشش یابند.
+- خروجی employer preview سمت Candidate با همان رزومه در context واقعی Employer و دادهٔ تست تأییدشده مقایسه شود.
+- یک واکتروی Application جدا تعیین کند Employer رزومهٔ زنده را می‌بیند یا snapshot مخصوص Application را.
+
+## Product Areaهای مرتبط
 
 - Primary: JobVision Candidate / Resume Management (candidate area)
-- Secondary candidate areas requiring team confirmation: Application Submission and Application Tracking
+- Secondary candidate areas requiring team confirmation: Application Submission و Application Tracking
 - Shared concept for later reconciliation only: `shared.resume`
 
-## Suggested Product Knowledge updates
+## پیشنهادهای Product Knowledge
 
-- Do not update canonical Product Knowledge from this draft package.
-- After Owner review, compare accepted claims primarily with the Candidate Resume Management Product Area and secondarily with the shared Resume concept.
-- Preserve the unresolved distinction between the current editable resume and any Application-associated resume representation.
+- از این package draft برای تغییر canonical Product Knowledge استفاده نشود.
+- پس از review Owner، claimهای پذیرفته‌شده ابتدا با Product Area مدیریت رزومهٔ Candidate و سپس با مفهوم shared Resume مقایسه شوند.
+- تمایز حل‌نشده میان رزومهٔ جاری و قابل ویرایش با representation مربوط به Application حفظ شود.
 
-## Handoff summary
+## خلاصه handoff
 
-Complete this section only after owner review.
+این بخش فقط پس از review Owner تکمیل می‌شود.
 
 - Package status: draft
 - Accepted evidence IDs:
 - Edited evidence IDs:
 - Rejected evidence IDs:
-- Remaining unknowns: See Coverage gaps.
-- Suggested Product Knowledge scope: Candidate Resume Management; shared Resume concept only for genuinely cross-product meaning and relationships.
+- Remaining unknowns: بخش «شکاف‌های پوشش» را ببینید.
+- Suggested Product Knowledge scope: Candidate Resume Management؛ مفهوم shared Resume فقط برای معنا و رابطه‌های واقعاً بین‌محصولی.
 
-A reviewed package is an approved source for reconciliation. It is not canonical Product Knowledge and must not be copied directly into product documentation without comparison against the current `product-knowledge/main` branch.
+یک package reviewed منبع تأییدشده برای reconciliation است، اما canonical Product Knowledge نیست و نباید بدون مقایسه با branch جاری `product-knowledge/main` مستقیماً در مستندات محصول کپی شود.
