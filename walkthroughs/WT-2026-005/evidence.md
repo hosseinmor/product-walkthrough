@@ -21,7 +21,7 @@ reviewed_at:
 - Actor: Jobseeker
 - Role: Authenticated Candidate
 - Authentication state: Logged in
-- Account, plan, or configuration: Existing Production account; the Saved Jobs collection was empty during this audit. Plan was not verified.
+- Account, plan, or configuration: Existing Production account; the Saved Jobs collection was initially empty. One current Job Post was then saved after explicit user authorization. Plan was not verified.
 - Permissions: Normal visible Candidate access; no elevated permissions were tested.
 - Environment: Production, desktop in-app browser
 - Starting point: JobVision home page
@@ -35,7 +35,9 @@ reviewed_at:
 - The Saved Jobs placement within the Candidate activity navigation
 - The current account's empty state and its visible guidance
 - Read-only inspection of bookmark-style save entry points on a job card and a current job detail
-- Accessibility signals exposed by the save controls, without activating them
+- An explicitly authorized save action on one current Job Post, including the control-state transition
+- The resulting transition from the empty Saved Jobs state to a one-item list containing the saved Job Post
+- Accessibility signals exposed by the save controls
 
 ### Narrated but not demonstrated
 
@@ -43,9 +45,9 @@ reviewed_at:
 
 ### Not covered
 
-- A non-empty Saved Jobs list, card composition, ordering, pagination, filtering, or sorting
-- Opening a Job Post from the Saved Jobs list
-- Saving or removing a Job Post
+- Saved Jobs ordering, pagination, filtering, or sorting beyond the observed one-item list
+- Opening a Job Post by activating its link from the Saved Jobs list
+- Removing a saved Job Post
 - Persistence across reload, sign-out/sign-in, browser sessions, or devices
 - Repeated save/remove behavior
 - Closed, expired, deleted, or otherwise unavailable saved Job Posts
@@ -56,9 +58,10 @@ reviewed_at:
 
 ### Unclear or blocked
 
-- The current account had no saved Job Posts, so list behavior and item-level actions could not be observed.
-- Production safety rules prohibited activating save/remove controls because those actions persist account data.
-- Exact post-save feedback, resulting state, and removal confirmation behavior remain unknown.
+- The account began with no saved Job Posts; only the resulting one-item state was observed after the user explicitly authorized one save action.
+- Removal remained prohibited because the user authorized saving one job, not removing it.
+- No visible toast or status message was detected after saving; whether feedback exists in other contexts remains unknown.
+- Exact removal confirmation, recovery, and longer-term persistence behavior remain unknown.
 
 ## Evidence
 
@@ -134,7 +137,7 @@ reviewed_at:
 - Conditions: A home-page job card and one current Job Post detail were inspected; no control was activated
 - Confidence: high
 - Claim: Job cards expose an outline bookmark icon control, and the inspected current Job Post detail also exposes an outline bookmark-style control for the primary Job Post.
-- Remaining uncertainty: The resulting visual state, feedback, persistence, duplicate action behavior, and exact relationship to the Saved Jobs list were not tested because activating the control would persist account data.
+- Remaining uncertainty: Removal behavior, duplicate action behavior, longer-term persistence, and feedback in other contexts remain untested.
 
 #### Owner review
 
@@ -151,6 +154,38 @@ reviewed_at:
 - Confidence: high
 - Claim: The Saved Jobs page retains global job-search inputs for job title or company, job category, and city, plus a search action above the Candidate activity navigation.
 - Remaining uncertainty: Search submission and return behavior relative to Saved Jobs were not tested.
+
+#### Owner review
+
+- Decision: pending
+- Final claim:
+- Owner note:
+
+### E-007 — Saving a current Job Post changes the bookmark state
+
+- Type: observed
+- Timestamp: 2026-08-08T05:34:36Z
+- Scope: Logged-in Candidate on one current Job Post detail in Production
+- Conditions: The user explicitly authorized saving one job; no application or other account action was performed
+- Confidence: high
+- Claim: Activating the Job Post save control changed its icon from an outline secondary bookmark to a filled primary bookmark.
+- Remaining uncertainty: No visible toast or status message was detected; reload and cross-session persistence were not tested.
+
+#### Owner review
+
+- Decision: pending
+- Final claim:
+- Owner note:
+
+### E-008 — A newly saved Job Post appears in Saved Jobs
+
+- Type: observed
+- Timestamp: 2026-08-08T05:34:57Z
+- Scope: Same logged-in Candidate account on `/saved-jobs` in Production
+- Conditions: One current Job Post had just been saved with explicit user authorization
+- Confidence: high
+- Claim: After the save action, the empty-state message was no longer visible and the Saved Jobs page contained a single Job Post link matching the saved Job Post; its card showed a filled primary bookmark icon.
+- Remaining uncertainty: Ordering, pagination, filters, opening the item by click, removal, and longer-term persistence were not verified.
 
 #### Owner review
 
@@ -178,8 +213,8 @@ reviewed_at:
 
 ## Coverage gaps
 
-- Non-empty Saved Jobs list and item-level navigation
-- Save and remove state transitions and persistence
+- Saved-list navigation by activating the item link
+- Remove state transition and longer-term persistence
 - Closed, expired, deleted, and unavailable saved Job Posts
 - Feedback and recovery on failed save/remove requests
 - Unauthenticated access and login return
@@ -188,8 +223,8 @@ reviewed_at:
 
 ## Recommended follow-up recording
 
-- Use a disposable Production-safe or staging account with at least one active saved Job Post and one closed or unavailable saved Job Post.
-- Explicitly authorize save/remove actions in that disposable account so list insertion, removal, feedback, and persistence can be verified.
+- Use a disposable Production-safe or staging account with an active saved Job Post and a closed or unavailable saved Job Post.
+- Explicitly authorize removal actions in that disposable account so removal feedback, recovery, and persistence can be verified.
 - Repeat the flow with keyboard-only navigation and a mobile viewport.
 
 ## Handoff summary
