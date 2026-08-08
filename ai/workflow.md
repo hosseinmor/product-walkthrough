@@ -11,7 +11,10 @@ Use the registry to:
 1. Check related product-area coverage and known gaps.
 2. Confirm that the proposed scope is bounded and not an accidental duplicate.
 3. Allocate the next unused `WT-YYYY-NNN` ID.
-4. Add or update a `planned` row with `not-assessed` coverage.
+4. Resolve the lowercase product-group and product slugs for the package path.
+5. Add or update a `planned` row with `not-assessed` coverage.
+
+Store packages at `products/<product-group>/<product>/WT-YYYY-NNN/evidence.md`. The registry remains centralized at `walkthroughs/index.md`.
 
 The registry is planning metadata only. Do not read linked prior packages or use registry wording as product evidence during extraction.
 
@@ -41,14 +44,15 @@ The extraction AI must:
 6. Add timestamps and contextual limits.
 7. Record coverage gaps, uncertainty, and suspected bugs.
 8. Leave all owner decisions as `pending`.
-9. Update the registry row to `draft`, set its coverage assessment, and record the most useful next gap.
+9. Store one evidence package at `products/<product-group>/<product>/WT-YYYY-NNN/evidence.md`.
+10. Update the registry row to `draft`, set its coverage assessment, link the product-organized package, and record the most useful next gap.
 
 During this phase, do not read Product Knowledge, PRDs, prior walkthrough conclusions, or design documents unless the user explicitly requests comparison.
 
 Output:
 
 ```text
-walkthrough-evidence.md
+products/<product-group>/<product>/WT-YYYY-NNN/evidence.md
 ```
 
 ## Phase 3 — Owner review
