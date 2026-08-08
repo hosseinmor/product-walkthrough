@@ -11,7 +11,8 @@ When the user provides a screen recording or asks to extract product behavior fr
 3. Check `walkthroughs/index.md` for ID allocation, related coverage, and known gaps.
 4. Apply `rules/evidence.md`.
 5. Produce output using `templates/evidence-package.md`.
-6. Update `walkthroughs/index.md` at the lifecycle points defined in the workflow.
+6. Store the package at `products/<product-group>/<product>/WT-YYYY-NNN/evidence.md` using lowercase product-group and product slugs.
+7. Update `walkthroughs/index.md` at the lifecycle points defined in the workflow.
 
 When the user asks how to record a walkthrough, use `guides/recording.md`.
 

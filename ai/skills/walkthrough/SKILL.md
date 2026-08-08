@@ -31,7 +31,10 @@ guides/evidence-review.md
 → owner review guidance
 
 walkthroughs/index.md
-→ ID, lifecycle status, and coverage registry
+→ central ID, lifecycle status, and coverage registry
+
+products/<product-group>/<product>/WT-YYYY-NNN/evidence.md
+→ product-organized evidence package
 ```
 
 ## Mode A — Evidence extraction
@@ -53,8 +56,9 @@ Process:
 7. Preserve conditions and uncertainty.
 8. Record coverage gaps and suspected bugs.
 9. Produce one evidence package using the template.
-10. Leave owner decisions pending.
-11. Update the registry row to `draft` with coverage and the most useful next gap.
+10. Store it at `products/<product-group>/<product>/WT-YYYY-NNN/evidence.md` using lowercase product-group and product slugs.
+11. Leave owner decisions pending.
+12. Update the registry row to `draft`, link the package, and record coverage and the most useful next gap.
 
 Output:
 
