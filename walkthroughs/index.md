@@ -32,6 +32,7 @@ Use one row per product area. Base the summary only on registered walkthrough me
 | JobVision | Candidate | Resume Management (candidate area) | `partial` | WT-2026-002 | WT-2026-003 رزومهٔ تکمیل‌شده و preview را پوشش می‌دهد؛ WT-2026-002 یک state ناقص کنترل‌شده، اثر تصمیم تحصیلات بر افت ۱۰۰٪ به ۶۵٪، recovery و بازگردانی را پوشش می‌دهد. بعدی: ماتریس کامل required/optional، save/delete، upload و مقایسهٔ تأییدشدهٔ Employer. |
 | JobVision | Candidate | Application Management (candidate area TBD) | `partial` | WT-2026-002 | WT-2026-002 gate رزومه ناقص، close/retry، wizard چهارمرحله‌ای و مسیر جایگزین upload را تا مرز ارسال واقعی پوشش می‌دهد؛ WT-2026-006 فهرست و مدیریت read-only را پوشش می‌دهد. بعدی: آگهی تست برای ایجاد Application، confirmation، snapshot رزومه، withdrawal و transitionها. |
 | JobVision | Candidate | Job Details & Evaluation | `partial` | WT-2026-002 | WT-2026-005 Saved Jobs را پوشش می‌دهد؛ WT-2026-002 شروع Apply از یک آگهی فعال و تحویل به gate Application را پوشش می‌دهد. بعدی: removal، unavailable jobs، share/report و مرزهای eligibility دیگر. |
+| JobVision | Candidate | Company Discovery & Profile (candidate area TBD) | `partial` | — | WT-2026-007 فهرست، جستجوی نام، مرتب‌سازی و یک پروفایل عمومی شرکت در Production را پوشش می‌دهد. بعدی: اعمال/پاک‌کردن فیلترها، follow، rating/review، شرکت بدون داده و accessibility. |
 
 ## Walkthroughs
 
