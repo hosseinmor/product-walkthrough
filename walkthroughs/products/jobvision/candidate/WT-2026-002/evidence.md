@@ -75,7 +75,7 @@ reviewed_at:
 
 ### E-001 — baseline رزومه فارسی می‌تواند ۱۰۰٪ تکمیل‌شده باشد در حالی که بخش‌های اختیاری خالی‌اند
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+00:35
 - Scope: Candidate واردشده، Resume Management در Production.
 - Conditions: رزومه موجود حساب در شروع سناریو.
@@ -91,7 +91,7 @@ reviewed_at:
 
 ### E-002 — برداشتن تصمیم «زبان خارجی ندارم» به‌تنهایی completeness کلی را فوراً تغییر نداد
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+02:08
 - Scope: بخش زبان‌ها در همان رزومه Production.
 - Conditions: checkbox «مهارت زبان خارجی ندارم» از حالت checked خارج شد و ۲٫۲ ثانیه برای به‌روزرسانی صبر شد.
@@ -107,7 +107,7 @@ reviewed_at:
 
 ### E-003 — تصمیم تحصیلات دانشگاهی یک معیار مؤثر completeness در این حساب است
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+04:09–T+04:35
 - Scope: بخش سوابق تحصیلی و نشانگر کلی رزومه فارسی.
 - Conditions: checkbox «تحصیلات دانشگاهی ندارم» از حالت checked خارج شد؛ هیچ رکورد تحصیلی جایگزین ثبت نشد.
@@ -123,7 +123,7 @@ reviewed_at:
 
 ### E-004 — Apply با رزومه ۶۵٪ به gate رزومه ناقص منتهی می‌شود
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+05:10–T+05:37
 - Scope: یک آگهی فعال Production با CTA «ارسال رزومه».
 - Conditions: Candidate واردشده؛ رزومه فارسی ۶۵٪ به‌علت تصمیم تحصیلات حل‌نشده.
@@ -139,7 +139,7 @@ reviewed_at:
 
 ### E-005 — بستن gate و تلاش مجدد state را دور نمی‌زند
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+05:58
 - Scope: همان آگهی و همان state رزومه ناقص.
 - Conditions: modal بسته و CTA «ارسال رزومه» دوباره انتخاب شد.
@@ -155,7 +155,7 @@ reviewed_at:
 
 ### E-006 — recovery در همان صفحه یک wizard چهارمرحله‌ای باز می‌کند
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+06:12–T+08:34
 - Scope: action «تکمیل رزومه جاب‌ویژن» از modal gate.
 - Conditions: Candidate واردشده در صفحه مشاغل؛ رزومه ناقص.
@@ -171,7 +171,7 @@ reviewed_at:
 
 ### E-007 — مرحله تحصیلات از یک degree decision به رکورد قابل مرور تبدیل می‌شود
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+07:36–T+08:07
 - Scope: مرحله ۲ از ۴ wizard.
 - Conditions: وضعیت اصلی حساب «زیر دیپلم» دوباره انتخاب شد.
@@ -187,7 +187,7 @@ reviewed_at:
 
 ### E-008 — مرحله مهارت‌ها یک تصمیم زبان را برای فعال‌شدن ارسال نهایی لازم می‌داند
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+08:34–T+09:24
 - Scope: مرحله ۴ از ۴ wizard.
 - Conditions: رکورد تحصیلات و سابقه شغلی موجود بودند؛ تصمیم زبان قبلاً برای تست برداشته شده بود.
@@ -203,7 +203,7 @@ reviewed_at:
 
 ### E-009 — خروج از wizard مسیر جایگزین رزومه شخصی را پیشنهاد می‌دهد
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+09:52–T+10:09
 - Scope: خروج از مرحله ۴ wizard پیش از ارسال نهایی.
 - Conditions: CTA نهایی enabled بود ولی کلیک نشد.
@@ -219,7 +219,7 @@ reviewed_at:
 
 ### E-010 — سناریو بدون Application واقعی پایان یافت و رزومه بازیابی شد
 
-- Type: observed
+- Type: accepted
 - Timestamp: T+10:25–T+11:21
 - Scope: Resume Management و همان آگهی Production پس از خروج از flow.
 - Conditions: وضعیت اصلی تحصیلات و زبان در wizard بازگردانده شد؛ هیچ CTA نهایی ارسال یا upload اجرا نشد.
@@ -287,7 +287,7 @@ reviewed_at:
 
 این بخش فقط پس از review Owner تکمیل می‌شود.
 
-- Package status: draft
+- Package status: reviewd
 - Accepted evidence IDs:
 - Edited evidence IDs:
 - Rejected evidence IDs:
