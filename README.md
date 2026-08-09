@@ -50,6 +50,16 @@ walkthroughs/products/<product-group>/<product>/WT-YYYY-NNN/evidence.md
 → product-organized evidence package; use lowercase canonical slugs and never store large video files here
 ```
 
+## Canonical walkthrough storage rule
+
+Every evidence package MUST use this exact structure:
+
+```text
+walkthroughs/products/<product-group>/<product-module>/WT-YYYY-NNN/evidence.md
+```
+
+Before creating a package, inspect the existing folders under `walkthroughs/products/` and reuse the canonical product-group and product-module names already used there. Never derive a folder name from a URL, UI label, or an assumed slug. If the canonical product-module folder does not exist, create that folder path by creating the evidence file there, then add the exact path to `walkthroughs/index.md`.
+
 ## Default operating model
 
 1. AI reads `walkthroughs/index.md`, selects a bounded gap, allocates the next walkthrough ID, and registers the scope as `planned`.
