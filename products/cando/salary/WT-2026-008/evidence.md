@@ -2,7 +2,7 @@
 walkthrough_id: WT-2026-008
 status: draft
 product_group: Cando
-product: salary-benchmark
+product: salary
 candidate_areas: [Team Management, Salary Benchmarking, Scenario Analysis, Organization Settings, Job Profile Management]
 recorded_at: 2026-08-09
 source:
