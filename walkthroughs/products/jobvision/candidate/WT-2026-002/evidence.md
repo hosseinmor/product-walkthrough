@@ -1,6 +1,6 @@
 ---
 walkthrough_id: WT-2026-002
-status: draft
+status: reviewed
 product_group: JobVision
 product: Candidate
 candidate_areas:
@@ -11,8 +11,9 @@ recorded_at: 2026-08-09
 source:
   type: browser-agent
   reference: واکتروی مستقیم Production در Chrome متصل به نشست واردشده؛ timestampها نسبت به شروع session مرورگر هستند و هیچ تصویر یا داده شخصی در repository ذخیره نشده است.
-reviewed_by: []
-reviewed_at:
+reviewed_by:
+  - Product Owner (confirmed in Codex)
+reviewed_at: 2026-08-09
 ---
 
 # بسته شواهد واکترو
@@ -85,7 +86,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -101,7 +102,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -117,7 +118,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -133,7 +134,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -149,7 +150,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -165,7 +166,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -181,7 +182,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -197,7 +198,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -213,7 +214,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
@@ -229,7 +230,7 @@ reviewed_at:
 
 #### بررسی Owner
 
-- Decision: pending
+- Decision: accepted
 - Final claim:
 - Owner note:
 
