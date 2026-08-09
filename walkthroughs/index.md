@@ -52,6 +52,16 @@ Store each package under `walkthroughs/products/<product-group>/<product>/WT-YYY
 
 | WT-2026-008 | Cando Salary / Product-wide audit (areas TBD) | کاربر لاگین‌شده در Production از Home؛ مسیرهای Team، Benchmark، Scenario، Job Profile و Settings با کنترل‌شدهٔ test data بررسی شد. | `draft` | `partial` | [evidence](walkthroughs/products/cando/salary/WT-2026-008/evidence.md) | 2026-08-09 | پوشش اصلی UI و رفتارهای ایجاد/ویرایش/حذف محدود؛ بعدی: role/error/empty/mobile و model/profile change کنترل‌شده. |
 
+## Package-path rule
+
+The package column must always link to:
+
+```text
+walkthroughs/products/<product-group>/<product-module>/WT-YYYY-NNN/evidence.md
+```
+
+Before allocating the path, inspect existing `walkthroughs/products/` folders and reuse their canonical names. Do not infer names from a URL or UI label. If a canonical module folder is absent, create it as part of the package write and use that exact new path in the registry.
+
 ## Update rules
 
 Before a walkthrough:
