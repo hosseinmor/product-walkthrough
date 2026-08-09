@@ -46,7 +46,7 @@ ai/skills/walkthrough/SKILL.md
 walkthroughs/index.md
 → central walkthrough status and product-area coverage registry
 
-products/<product-group>/<product>/WT-YYYY-NNN/evidence.md
+walkthroughs/products/<product-group>/<product>/WT-YYYY-NNN/evidence.md
 → product-organized evidence package; use lowercase canonical slugs and never store large video files here
 ```
 
@@ -63,7 +63,7 @@ The registry contains planning and coverage metadata only. It must not be used a
 
 ## Storage
 
-Group evidence packages first by product group and then by product, for example `products/jobvision/candidate/WT-YYYY-NNN/evidence.md`. Keep the central lifecycle and coverage registry at `walkthroughs/index.md`.
+Group evidence packages first by product group and then by product, for example `walkthroughs/products/jobvision/candidate/WT-YYYY-NNN/evidence.md`. Keep the central lifecycle and coverage registry at `walkthroughs/index.md`.
 
 Do not commit raw screen recordings, personal data, credentials, or large media files. Store recordings in an approved internal location and reference them from the evidence package.
 
