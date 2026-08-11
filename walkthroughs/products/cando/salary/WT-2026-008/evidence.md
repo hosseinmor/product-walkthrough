@@ -51,7 +51,7 @@ reviewed_at:
 ## Evidence
 
 ### E-001 — فهرست تیم فیلدهای مقایسهٔ جبران خدمات را نشان می‌دهد
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: صفحهٔ Team در سازمان Production واردشده.
 - Conditions: رکوردهای همکار موجود.
@@ -60,12 +60,12 @@ reviewed_at:
 - Remaining uncertainty: semantics جست‌وجو فراتر از query کد پرسنلی تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-002 — ایجاد همکار پیش از ذخیره، اطلاعات اجباری را validate می‌کند
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: dialog افزودن همکار.
 - Conditions: فرم خالی در برابر رکورد تست کامل.
@@ -74,12 +74,12 @@ reviewed_at:
 - Remaining uncertainty: ماتریس کامل required/optional استخراج نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-003 — ذخیرهٔ همکار محاسبهٔ بنچمارک را آغاز می‌کند
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: همکار تست کنترل‌شده در Production.
 - Conditions: اتصال به شناسنامهٔ شغلی و ساختار سازمانی موجود.
@@ -88,12 +88,12 @@ reviewed_at:
 - Remaining uncertainty: زمان‌بندی، retry و failure محاسبه تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-004 — جزئیات همکار، ورودی‌های بنچمارک در سطح مدل را نمایش می‌دهد
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: drawer جزئیات همکار تست.
 - Conditions: نتیجهٔ بنچمارک موجود.
@@ -102,12 +102,12 @@ reviewed_at:
 - Remaining uncertainty: معنا و قواعد وزن مدل‌ها نیازمند review مالک است.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-005 — حقوق نهایی مستقل از بازهٔ پیشنهادی ثبت می‌شود
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: همکار تست کنترل‌شده.
 - Conditions: مقدار تست داخل بازهٔ پیشنهادی ذخیره شد.
@@ -116,12 +116,12 @@ reviewed_at:
 - Remaining uncertainty: ویرایش یا حذف حقوق نهایی به‌طور کامل تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-006 — تحلیل سناریو ستون مقایسه‌ای پایدار ایجاد و باز‌محاسبه می‌کند
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: صفحهٔ تحلیل سناریو.
 - Conditions: سناریوی تست با ضریب پیچیدگی ایجاد، ویرایش و حذف شد.
@@ -130,12 +130,12 @@ reviewed_at:
 - Remaining uncertainty: ترکیب چند filter و چند setting تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-007 — حذف سناریو تأیید می‌خواهد
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: سناریوی تست.
 - Conditions: کنترل حذف در overflow سناریو.
@@ -144,12 +144,12 @@ reviewed_at:
 - Remaining uncertainty: recovery پس از حذف تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-008 — ایجاد شناسنامهٔ شغلی به عنوان استاندارد resolve می‌شود
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: عناوین شغلی.
 - Conditions: عنوان واقعی ارائه‌شده توسط کاربر و سطح ارشدیت انتخاب‌شده.
@@ -158,12 +158,12 @@ reviewed_at:
 - Remaining uncertainty: قواعد پیشنهاد عنوان استاندارد و تولید شناسنامه مشخص نیست.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-009 — حذف ساختار متصل به همکار مسدود است
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: تنظیمات دپارتمان و بیزینس‌لاین.
 - Conditions: رکورد انتخاب‌شده همکار تخصیص‌یافته داشت.
@@ -172,12 +172,12 @@ reviewed_at:
 - Remaining uncertainty: حذف ساختارهای خالی تست نشد.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
 ### E-010 — trigger دریافت گزارش تیم خروجی قابل‌مشاهده نداشت
-- Type: observed
+- Type: accepted
 - Timestamp: جلسهٔ آدیت مستقیم، 2026-08-09
 - Scope: صفحهٔ گزارش تیم.
 - Conditions: session واردشده در Production؛ کنترل دانلود دو بار کلیک شد.
@@ -186,7 +186,7 @@ reviewed_at:
 - Remaining uncertainty: ممکن است به browser/session وابسته باشد و rule محصول محسوب نمی‌شود.
 
 #### Owner review
-- Decision: pending
+- Decision: reviewd
 - Final claim:
 - Owner note:
 
@@ -221,7 +221,7 @@ reviewed_at:
 
 این بخش فقط پس از owner review تکمیل می‌شود.
 
-- Package status: draft
+- Package status: reviewd
 - Accepted evidence IDs:
 - Edited evidence IDs:
 - Rejected evidence IDs:
